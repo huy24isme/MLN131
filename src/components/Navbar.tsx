@@ -37,8 +37,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Left: Stats with VT323 font */}
         <div className="flex items-center gap-3">
           <div className="text-left leading-none tracking-wider">
-            <div className="text-base text-yellow-400 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
-              👾 DÒNG CHẢY SỬ VIỆT
+            <div className="text-lg text-yellow-400 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
+              👾 RETRO PIXEL GAME
             </div>
             <div className="text-2xl text-white font-bold drop-shadow-[1px_1px_0px_#000]">
               ĐIỂM CAO: 9999
