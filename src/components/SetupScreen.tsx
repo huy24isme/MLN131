@@ -49,7 +49,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 flex flex-col items-center relative z-10 select-none">
-      {/* Title matching Canva 8-bit text: "CÙNG CHƠI CỜ NÀO" */}
+      {/* Title */}
       <div className="text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
@@ -57,7 +57,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
           <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
         </div>
         <h1 className="font-['VT323',monospace] text-4xl sm:text-6xl font-black text-white pixel-text-shadow leading-tight tracking-wider">
-          CÙNG CHƠI CỜ NÀO
+          RETRO PIXEL GAME
         </h1>
         <p className="font-['VT323',monospace] text-xl sm:text-2xl text-yellow-300 mt-1 tracking-wide">
           GAME SHOW LỚP HỌC &bull; 8 RƯƠNG SỨ MỆNH &bull; 20 CÂU HỎI THỬ THÁCH

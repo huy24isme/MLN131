@@ -28,7 +28,7 @@ export const PickBriefcasesScreen: React.FC<PickBriefcasesScreenProps> = ({
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6 flex flex-col items-center relative z-10 select-none font-['VT323',monospace]">
-      {/* Title Banner matching Canva "CÙNG CHƠI CỜ NÀO" in VT323 */}
+      {/* Title Banner */}
       <div className="text-center mb-6 w-full max-w-2xl">
         {!isAllPicked && teamToPick ? (
           <div className="p-4 pixel-box">
