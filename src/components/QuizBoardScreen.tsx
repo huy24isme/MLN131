@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Question, Team } from '../types';
 import { QuestionModal } from './QuestionModal';
-import { ArrowRight, Check, X, Sparkles, Award } from 'lucide-react';
+import { ArrowRight, Check, X, Award } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface QuizBoardScreenProps {
@@ -41,44 +41,84 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
     onAnswerQuestion(selectedQuestion.id, isCorrect, activeTeam.id);
     setSelectedQuestion(null);
 
-    // Auto rotate turn to next team
+    // Auto cycle turn to next team
     setActiveTeamIndex((prev) => (prev + 1) % teams.length);
   };
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col items-center">
-      {/* Top Banner: Current Turn & Progress */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 items-center mb-6">
-        {/* Progress indicator */}
-        <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-            Tiến độ câu hỏi
-          </span>
-          <span className="text-sm font-extrabold text-amber-400">
-            {answeredCount} / {questions.length} câu đã trả lời
-          </span>
-        </div>
+  // Split into 2 rows of 10 to match Figma layout
+  const row1 = questions.slice(0, 10);
+  const row2 = questions.slice(10, 20);
 
+  const renderTile = (q: Question) => {
+    const isAnswered = q.isAnswered;
+    const isCorrect = q.isCorrect;
+    const formattedNum = q.id < 10 ? `0${q.id}` : `${q.id}`;
+
+    return (
+      <button
+        key={q.id}
+        onClick={() => handleSelectQuestion(q)}
+        disabled={isAnswered}
+        className={`relative w-11 h-11 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl font-black text-base sm:text-2xl transition-all duration-200 select-none flex flex-col items-center justify-center ${
+          isAnswered
+            ? isCorrect
+              ? 'bg-emerald-950/70 border-2 border-emerald-500 text-emerald-400 opacity-80 cursor-not-allowed shadow-inner'
+              : 'bg-stone-900/80 border-2 border-stone-700 text-stone-500 opacity-50 cursor-not-allowed'
+            : 'gold-tile text-[#5c1d0b] cursor-pointer'
+        }`}
+      >
+        {isAnswered ? (
+          <div className="flex flex-col items-center">
+            {isCorrect ? (
+              <>
+                <Check className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3] text-emerald-400" />
+                <span className="text-[10px] sm:text-xs font-bold text-emerald-300">
+                  +{q.points}đ
+                </span>
+              </>
+            ) : (
+              <>
+                <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3] text-rose-500" />
+                <span className="text-[10px] sm:text-xs font-bold text-stone-400">0đ</span>
+              </>
+            )}
+          </div>
+        ) : (
+          <span className="font-['Cinzel',serif] tracking-tighter">
+            {formattedNum}
+          </span>
+        )}
+      </button>
+    );
+  };
+
+  return (
+    <div className="w-full max-w-7xl mx-auto px-4 py-4 sm:py-6 flex flex-col items-center relative z-10">
+      {/* Top Controls: Current Turn & Finish Button */}
+      <div className="w-full max-w-5xl flex flex-wrap items-center justify-between gap-4 mb-6">
         {/* Current Turn Badge */}
-        <div className="p-3.5 rounded-2xl bg-slate-900/90 border-2 border-amber-500/60 shadow-lg shadow-amber-500/10 flex items-center justify-center gap-3">
-          <span className="text-xs uppercase tracking-wider font-extrabold text-amber-400">
-            Lượt của:
+        <div className="flex items-center gap-3 bg-black/40 px-4 py-2 rounded-2xl border border-amber-500/30 backdrop-blur-sm">
+          <span className="text-xs uppercase font-['Cinzel',serif] font-bold text-amber-300">
+            LƯỢT THI ĐẤU:
           </span>
           <span
-            className={`px-3 py-1 rounded-xl text-sm font-black text-white bg-gradient-to-r ${activeTeam.color} shadow`}
+            className={`px-3 py-1 rounded-xl text-xs sm:text-sm font-black text-white bg-gradient-to-r ${activeTeam.color} shadow`}
           >
             {activeTeam.name}
           </span>
+          <span className="text-xs text-amber-200/70">
+            ({answeredCount}/20 câu)
+          </span>
         </div>
 
-        {/* Next Phase Button */}
-        <div className="flex justify-end">
+        {/* Advance to Deals Button */}
+        <div>
           <button
             onClick={() => {
               if (
                 !isAllAnswered &&
                 !window.confirm(
-                  `Chưa trả lời hết 20 câu hỏi (${answeredCount}/${questions.length}). Bạn có chắc muốn kết thúc sớm để vào Vòng Thương Lượng không?`
+                  `Chưa mở hết 20 câu (${answeredCount}/20). Bạn có muốn chuyển sang vòng ĐẤU GIÁ (Deal or No Deal) luôn không?`
                 )
               ) {
                 return;
@@ -86,84 +126,39 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
               sound.playCashDeal();
               onFinishQuiz();
             }}
-            className={`w-full md:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-sm font-black transition cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-['Cinzel',serif] text-xs sm:text-sm font-black transition cursor-pointer ${
               isAllAnswered
-                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-lg shadow-emerald-500/30 animate-bounce'
-                : 'bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700'
+                ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 shadow-lg shadow-amber-500/40 animate-bounce'
+                : 'bg-black/50 hover:bg-amber-950/60 text-amber-300 border border-amber-500/40'
             }`}
           >
-            <span>VÀO VÒNG THƯƠNG LƯỢNG</span>
+            <span>VÀO VÒNG ĐẤU GIÁ</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Main 20 Questions Matrix (5 cols x 4 rows) */}
-      <div className="w-full grid grid-cols-4 sm:grid-cols-5 gap-3 sm:gap-4 mb-8">
-        {questions.map((q) => {
-          const isAnswered = q.isAnswered;
-          const isCorrect = q.isCorrect;
-          const answeredTeam = q.answeredByTeamId
-            ? teams.find((t) => t.id === q.answeredByTeamId)
-            : null;
+      {/* 20 Golden Tiles arranged exactly in 2 rows of 10 matching Figma Screenshot 2 */}
+      <div className="w-full max-w-5xl my-4 sm:my-8 flex flex-col items-center gap-3 sm:gap-5">
+        {/* Row 1: 01 to 10 */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+          {row1.map(renderTile)}
+        </div>
 
-          return (
-            <button
-              key={q.id}
-              onClick={() => handleSelectQuestion(q)}
-              disabled={isAnswered}
-              className={`relative h-20 sm:h-24 rounded-2xl font-black text-xl sm:text-2xl transition-all duration-200 select-none flex flex-col items-center justify-center border-2 ${
-                isAnswered
-                  ? isCorrect
-                    ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-400 opacity-80 cursor-not-allowed'
-                    : 'bg-rose-950/40 border-rose-600/50 text-rose-400 opacity-60 cursor-not-allowed'
-                  : 'bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border-amber-500/50 hover:border-amber-400 hover:scale-105 hover:shadow-xl hover:shadow-amber-500/20 text-amber-300 cursor-pointer active:scale-95'
-              }`}
-            >
-              {isAnswered ? (
-                <div className="flex flex-col items-center">
-                  {isCorrect ? (
-                    <>
-                      <Check className="w-6 h-6 stroke-[3] text-emerald-400" />
-                      <span className="text-xs font-bold text-emerald-300">
-                        +{q.points}đ
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <X className="w-6 h-6 stroke-[3] text-rose-500" />
-                      <span className="text-xs font-bold text-rose-400">0đ</span>
-                    </>
-                  )}
-                  {answeredTeam && (
-                    <span className="text-[10px] text-slate-400 truncate max-w-[80px]">
-                      {answeredTeam.name}
-                    </span>
-                  )}
-                </div>
-              ) : (
-                <>
-                  <span className="text-2xl sm:text-3xl font-black text-white">
-                    {q.id}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-amber-400/80 font-bold tracking-wider">
-                    CÂU HỎI
-                  </span>
-                </>
-              )}
-            </button>
-          );
-        })}
+        {/* Row 2: 11 to 20 */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+          {row2.map(renderTile)}
+        </div>
       </div>
 
       {/* Live Scoreboard */}
-      <div className="w-full p-4 sm:p-5 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-xl">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-2">
-            <Award className="w-4 h-4" /> Bảng Điểm Trực Tiếp
-          </h3>
-          <span className="text-xs text-slate-400">
-            * Bấm vào tên đội để chuyển lượt trả lời thủ công
+      <div className="w-full max-w-4xl mt-6 p-4 rounded-2xl bg-black/40 border border-amber-500/20 backdrop-blur-sm">
+        <div className="flex items-center justify-between mb-2">
+          <h4 className="text-xs font-['Cinzel',serif] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            <Award className="w-4 h-4" /> BẢNG ĐIỂM CÁC ĐỘI
+          </h4>
+          <span className="text-[11px] text-amber-200/50">
+            * Bấm vào đội để chuyển lượt thủ công
           </span>
         </div>
 
@@ -174,27 +169,24 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
               <div
                 key={team.id}
                 onClick={() => setActiveTeamIndex(idx)}
-                className={`p-3.5 rounded-2xl border transition cursor-pointer ${
+                className={`p-3 rounded-xl border transition cursor-pointer text-center ${
                   isActive
-                    ? 'bg-slate-800 border-amber-400 shadow-lg shadow-amber-500/20 ring-2 ring-amber-400/40'
-                    : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                    ? 'bg-amber-950/60 border-amber-400 shadow-md ring-2 ring-amber-400/50'
+                    : 'bg-black/40 border-amber-500/10 hover:border-amber-500/30'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded-md text-white bg-gradient-to-r ${team.color} truncate max-w-[90px]`}
+                    className={`text-[11px] font-bold px-2 py-0.5 rounded text-white bg-gradient-to-r ${team.color} truncate max-w-[80px]`}
                   >
                     {team.name}
                   </span>
-                  <span className="text-[11px] font-bold text-amber-300">
-                    Cặp #{team.initialBriefcaseId}
+                  <span className="text-[10px] text-amber-300 font-bold">
+                    Rương #{team.initialBriefcaseId}
                   </span>
                 </div>
-                <div className="mt-2 flex items-baseline justify-between">
-                  <span className="text-xs text-slate-400 font-medium">Điểm:</span>
-                  <span className="text-2xl sm:text-3xl font-black text-amber-400">
-                    {team.score}
-                  </span>
+                <div className="text-2xl font-black text-amber-400 font-['Cinzel',serif]">
+                  {team.score}đ
                 </div>
               </div>
             );
@@ -202,7 +194,7 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
         </div>
       </div>
 
-      {/* Active Question Modal */}
+      {/* Question Modal */}
       <QuestionModal
         question={selectedQuestion}
         activeTeam={activeTeam}

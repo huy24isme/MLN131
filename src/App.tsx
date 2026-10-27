@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { GamePhase, Team, Briefcase, Question, BriefcaseEffectType } from './types';
 import { INITIAL_QUESTIONS } from './data/defaultQuestions';
 import { generateShuffledBriefcases } from './data/defaultBriefcases';
@@ -11,19 +11,17 @@ import { QuizBoardScreen } from './components/QuizBoardScreen';
 import { DealScreen } from './components/DealScreen';
 import { RevealScreen } from './components/RevealScreen';
 import { VictoryScreen } from './components/VictoryScreen';
+import { TrongDongBackground } from './components/TrongDongBackground';
 import { sound } from './utils/audio';
 
 const STORAGE_KEY_QUESTIONS = 'chieccap_questions_v1';
 
 export const App: React.FC = () => {
-  // Game Phase
   const [phase, setPhase] = useState<GamePhase>('SETUP');
 
-  // Teams & Briefcases
   const [teams, setTeams] = useState<Team[]>([]);
   const [briefcases, setBriefcases] = useState<Briefcase[]>(() => generateShuffledBriefcases());
 
-  // Questions
   const [questions, setQuestions] = useState<Question[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_QUESTIONS);
@@ -34,25 +32,21 @@ export const App: React.FC = () => {
     return INITIAL_QUESTIONS;
   });
 
-  // UI Modals & Settings
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
   const [isQuestionEditorOpen, setIsQuestionEditorOpen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
-  // Toggle Mute
   const handleToggleMute = () => {
     sound.isMuted = !isMuted;
     setIsMuted(!isMuted);
   };
 
-  // Start Game from Setup
   const handleStartGame = (initializedTeams: Team[]) => {
     setTeams(initializedTeams);
     setBriefcases(generateShuffledBriefcases());
     setPhase('PICK_BRIEFCASES');
   };
 
-  // Pick Briefcase
   const handlePickBriefcase = (teamId: number, briefcaseId: number) => {
     setTeams((prev) =>
       prev.map((t) => (t.id === teamId ? { ...t, initialBriefcaseId: briefcaseId } : t))
@@ -62,12 +56,10 @@ export const App: React.FC = () => {
     );
   };
 
-  // Move from Picking to Quiz
   const handleFinishPicking = () => {
     setPhase('QUIZ_BOARD');
   };
 
-  // Answering a Question
   const handleAnswerQuestion = (
     questionId: number,
     isCorrect: boolean,
@@ -76,7 +68,6 @@ export const App: React.FC = () => {
     const question = questions.find((q) => q.id === questionId);
     if (!question) return;
 
-    // Update questions status
     setQuestions((prev) =>
       prev.map((q) =>
         q.id === questionId
@@ -90,7 +81,6 @@ export const App: React.FC = () => {
       )
     );
 
-    // Update team score if correct
     if (isCorrect) {
       setTeams((prev) =>
         prev.map((t) =>
@@ -100,12 +90,10 @@ export const App: React.FC = () => {
     }
   };
 
-  // Finish Quiz and Go to Deals
   const handleFinishQuiz = () => {
     setPhase('DEAL_OR_NO_DEAL');
   };
 
-  // Deal Decision for a team
   const handleTeamDealDecision = (
     teamId: number,
     sold: boolean,
@@ -125,7 +113,6 @@ export const App: React.FC = () => {
       })
     );
 
-    // Mark briefcase as sold
     const team = teams.find((t) => t.id === teamId);
     if (team?.initialBriefcaseId) {
       setBriefcases((prev) =>
@@ -136,12 +123,10 @@ export const App: React.FC = () => {
     }
   };
 
-  // Move from Deals to Reveal
   const handleFinishDeals = () => {
     setPhase('REVEAL_BRIEFCASES');
   };
 
-  // Apply Briefcase Effect
   const handleApplyBriefcaseEffect = (
     teamId: number,
     effect: BriefcaseEffectType,
@@ -208,12 +193,10 @@ export const App: React.FC = () => {
     });
   };
 
-  // Move from Reveal to Victory
   const handleFinishReveal = () => {
     setPhase('VICTORY');
   };
 
-  // Reset Game
   const handleResetGame = () => {
     if (window.confirm('Bạn có chắc muốn làm mới toàn bộ trận đấu và chơi lại từ đầu không?')) {
       setPhase('SETUP');
@@ -230,7 +213,6 @@ export const App: React.FC = () => {
     }
   };
 
-  // Save customized questions
   const handleSaveQuestions = (updated: Question[]) => {
     setQuestions(updated);
     try {
@@ -238,8 +220,20 @@ export const App: React.FC = () => {
     } catch {}
   };
 
+  // Allow tab jumping if game has started
+  const handleNavigatePhase = (targetPhase: GamePhase) => {
+    if (teams.length === 0) {
+      alert('Vui lòng tạo đội và bấm BẮT ĐẦU trước!');
+      return;
+    }
+    setPhase(targetPhase);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex flex-col justify-between">
+    <div className="min-h-screen bg-radial from-[#520d0d] via-[#360707] to-[#1a0202] text-amber-100 flex flex-col justify-between relative overflow-hidden">
+      {/* Background Dong Son Bronze Drum */}
+      <TrongDongBackground />
+
       {/* Top Navbar */}
       <Navbar
         currentPhase={phase}
@@ -247,10 +241,11 @@ export const App: React.FC = () => {
         onToggleMute={handleToggleMute}
         onResetGame={handleResetGame}
         onOpenRules={() => setIsRulesOpen(true)}
+        onNavigatePhase={handleNavigatePhase}
       />
 
-      {/* Main Game Screen depending on phase */}
-      <main className="flex-1 flex flex-col justify-center">
+      {/* Main Game Screen */}
+      <main className="flex-1 flex flex-col justify-center py-4 relative z-10">
         {phase === 'SETUP' && (
           <SetupScreen
             onStartGame={handleStartGame}
@@ -315,10 +310,15 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="py-4 border-t border-slate-800/80 text-center text-xs text-slate-500">
-        Chiếc Cặp Nguyện Vọng &bull; Game Show Lớp Học &bull; Sẵn sàng cho GitHub & Vercel
-      </footer>
+      {/* Bottom Right Slogan matching Figma: "Còn gì đẹp hơn HÒA BÌNH - ĐỘC LẬP" */}
+      <div className="fixed bottom-3 right-6 pointer-events-none text-right z-30 select-none hidden sm:block">
+        <p className="font-['Dancing_Script',cursive] text-amber-200/90 text-xl sm:text-2xl drop-shadow">
+          Còn gì đẹp hơn
+        </p>
+        <p className="font-['Cinzel',serif] font-black text-amber-400 text-lg sm:text-2xl tracking-wider drop-shadow-md">
+          HÒA BÌNH - ĐỘC LẬP
+        </p>
+      </div>
 
       {/* Modals */}
       <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />

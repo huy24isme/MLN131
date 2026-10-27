@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Maximize2, RotateCcw, HelpCircle, Briefcase } from 'lucide-react';
+import { Volume2, VolumeX, Maximize2, RotateCcw } from 'lucide-react';
 import { GamePhase } from '../types';
 
 interface NavbarProps {
@@ -8,16 +8,8 @@ interface NavbarProps {
   onToggleMute: () => void;
   onResetGame: () => void;
   onOpenRules: () => void;
+  onNavigatePhase?: (phase: GamePhase) => void;
 }
-
-const PHASE_TITLES: Record<GamePhase, string> = {
-  SETUP: 'Khởi Tạo Trận Đấu',
-  PICK_BRIEFCASES: 'Vòng 1: Chọn Chiếc Cặp Bí Ẩn',
-  QUIZ_BOARD: 'Vòng 2: Trả Lời 20 Câu Hỏi',
-  DEAL_OR_NO_DEAL: 'Vòng 3: Thương Lượng & Mua Bán Cặp',
-  REVEAL_BRIEFCASES: 'Vòng 4: Mở Cặp & Kích Hoạt Hiệu Ứng',
-  VICTORY: 'Chung Cuộc: Vinh Danh Nhà Vô Địch 🏆',
-};
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentPhase,
@@ -25,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleMute,
   onResetGame,
   onOpenRules,
+  onNavigatePhase,
 }) => {
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -34,65 +27,101 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
+  const isChestPhase = currentPhase === 'PICK_BRIEFCASES' || currentPhase === 'REVEAL_BRIEFCASES';
+  const isQuizPhase = currentPhase === 'QUIZ_BOARD';
+  const isDealPhase = currentPhase === 'DEAL_OR_NO_DEAL';
+
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-amber-500/20 px-4 py-3 sm:px-6 shadow-lg">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        {/* Left: Brand */}
+    <header className="sticky top-0 z-40 px-4 py-4 sm:px-8 border-b border-amber-500/20 bg-[#300505]/90 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+        {/* Left: Brand "DÒNG CHẢY SỬ VIỆT" */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20">
-            <Briefcase className="w-6 h-6 text-slate-950 stroke-[2.5]" />
-          </div>
-          <div>
-            <h1 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
-              CHIẾC CẶP NGUYỆN VỌNG
-              <span className="hidden md:inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                Lớp Học
-              </span>
+          <div className="text-left select-none">
+            <h1 className="font-['Cinzel',serif] text-xl sm:text-2xl font-black tracking-wider text-amber-200 drop-shadow-md">
+              DÒNG CHẢY
             </h1>
-            <p className="text-xs text-amber-400 font-medium">
-              {PHASE_TITLES[currentPhase]}
-            </p>
+            <h1 className="font-['Cinzel',serif] text-2xl sm:text-3xl font-black tracking-widest text-amber-400 -mt-1 drop-shadow-md">
+              SỬ VIỆT
+            </h1>
           </div>
         </div>
 
-        {/* Right: Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Center: Tabs matching Figma: (?) RƯƠNG SỨ MỆNH | THỬ THÁCH | ĐẤU GIÁ */}
+        <div className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-['Cinzel',serif] font-black tracking-widest">
+          {/* (?) Rule button */}
           <button
             onClick={onOpenRules}
-            title="Luật chơi"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition-all cursor-pointer"
+            title="Xem luật chơi"
+            className="w-8 h-8 rounded-full border-2 border-amber-400/80 bg-amber-500/20 text-amber-300 hover:bg-amber-400 hover:text-slate-950 flex items-center justify-center font-bold text-base transition-all shadow-md cursor-pointer"
           >
-            <HelpCircle className="w-4 h-4 text-amber-400" />
-            <span className="hidden sm:inline">Luật chơi</span>
+            ?
           </button>
 
+          {/* RƯƠNG SỨ MỆNH */}
+          <button
+            onClick={() => onNavigatePhase?.('PICK_BRIEFCASES')}
+            className={`transition-all uppercase cursor-pointer ${
+              isChestPhase
+                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
+                : 'text-amber-200/60 hover:text-amber-300'
+            }`}
+          >
+            RƯƠNG SỨ MỆNH
+          </button>
+
+          {/* THỬ THÁCH */}
+          <button
+            onClick={() => onNavigatePhase?.('QUIZ_BOARD')}
+            className={`transition-all uppercase cursor-pointer ${
+              isQuizPhase
+                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
+                : 'text-amber-200/60 hover:text-amber-300'
+            }`}
+          >
+            THỬ THÁCH
+          </button>
+
+          {/* ĐẤU GIÁ */}
+          <button
+            onClick={() => onNavigatePhase?.('DEAL_OR_NO_DEAL')}
+            className={`transition-all uppercase cursor-pointer ${
+              isDealPhase
+                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
+                : 'text-amber-200/60 hover:text-amber-300'
+            }`}
+          >
+            ĐẤU GIÁ
+          </button>
+        </div>
+
+        {/* Right: Controls (Audio, Fullscreen, Reset) */}
+        <div className="flex items-center gap-2">
           <button
             onClick={onToggleMute}
             title={isMuted ? 'Bật âm thanh' : 'Tắt âm thanh'}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-black/40 hover:bg-amber-950/60 text-amber-300 border border-amber-500/30 transition cursor-pointer"
           >
             {isMuted ? (
-              <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" />
+              <VolumeX className="w-4 h-4 text-rose-400" />
             ) : (
-              <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+              <Volume2 className="w-4 h-4 text-amber-400" />
             )}
           </button>
 
           <button
             onClick={toggleFullScreen}
             title="Toàn màn hình máy chiếu"
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-black/40 hover:bg-amber-950/60 text-amber-300 border border-amber-500/30 transition cursor-pointer"
           >
-            <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400" />
+            <Maximize2 className="w-4 h-4" />
           </button>
 
           <button
             onClick={onResetGame}
             title="Chơi lại từ đầu"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-red-950/60 hover:bg-red-900/80 text-red-200 border border-red-800/60 transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-black/40 hover:bg-rose-950/60 text-rose-400 border border-rose-500/30 transition cursor-pointer"
           >
-            <RotateCcw className="w-4 h-4 text-red-400" />
-            <span className="hidden sm:inline">Reset</span>
+            <RotateCcw className="w-4 h-4" />
           </button>
         </div>
       </div>

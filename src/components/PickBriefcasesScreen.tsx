@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Briefcase, Team } from '../types';
-import { BriefcaseCard } from './BriefcaseCard';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ChestCard } from './ChestCard';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface PickBriefcasesScreenProps {
@@ -28,62 +28,59 @@ export const PickBriefcasesScreen: React.FC<PickBriefcasesScreenProps> = ({
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col items-center">
+    <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-8 flex flex-col items-center relative z-10">
       {/* Turn Banner */}
-      <div className="text-center mb-8 w-full max-w-3xl">
+      <div className="text-center mb-6 w-full max-w-2xl">
         {!isAllPicked && teamToPick ? (
-          <div className="p-4 sm:p-6 rounded-3xl bg-slate-900/90 border-2 border-amber-500/50 shadow-2xl backdrop-blur-md animate-gold-glow">
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-amber-400">
-              Vòng 1: Chọn Chiếc Cặp May Mắn
+          <div className="p-4 rounded-2xl bg-black/40 border border-amber-500/40 backdrop-blur-md shadow-xl animate-gold-shine">
+            <span className="text-xs uppercase tracking-widest font-['Cinzel',serif] text-amber-300 font-bold">
+              RƯƠNG SỨ MỆNH
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mt-1 flex items-center justify-center gap-3">
+            <h2 className="text-xl sm:text-3xl font-black text-white mt-1 flex items-center justify-center gap-2">
               Mời
               <span
-                className={`px-4 py-1 rounded-2xl bg-gradient-to-r ${teamToPick.color} text-white shadow-lg`}
+                className={`px-3 py-0.5 rounded-xl bg-gradient-to-r ${teamToPick.color} text-white shadow`}
               >
                 {teamToPick.name}
               </span>
-              chọn 1 chiếc cặp!
+              chọn 1 Rương!
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-2">
-              Hãy chọn 1 số bất kỳ. Chiếc cặp này sẽ được niêm phong và chỉ mở vào cuối trò chơi!
+            <p className="text-xs text-amber-200/70 mt-1">
+              Rương sứ mệnh sẽ được phong ấn và chỉ mở khi kết thúc toàn bộ thử thách!
             </p>
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-emerald-950/60 border-2 border-emerald-500/60 shadow-2xl backdrop-blur-md text-center animate-fadeIn">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Hoàn tất chọn cặp
+          <div className="p-5 rounded-2xl bg-emerald-950/70 border border-emerald-500/60 shadow-xl backdrop-blur-md text-center animate-fadeIn">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-1">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Tất cả các đội đã chọn rương
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
-              TẤT CẢ CÁC ĐỘI ĐÃ CÓ CẶP BÍ MẬT!
+            <h2 className="text-xl sm:text-2xl font-black text-white font-['Cinzel',serif]">
+              SẴN SÀNG BƯỚC VÀO THỬ THÁCH!
             </h2>
-            <p className="text-sm text-slate-300 mt-2 max-w-lg mx-auto">
-              {8 - teams.length} chiếc cặp còn lại sẽ được đưa vào kho niêm phong. Giờ là lúc tranh tài kiến thức qua 20 câu hỏi!
-            </p>
-            <div className="mt-5">
+            <div className="mt-3">
               <button
                 onClick={() => {
                   sound.playCorrect();
                   onFinishPicking();
                 }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-base shadow-xl shadow-amber-500/30 transition transform hover:scale-105 cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/30 transition transform hover:scale-105 cursor-pointer font-['Cinzel',serif]"
               >
-                BẮT ĐẦU VÒNG 20 CÂU HỎI
-                <ArrowRight className="w-5 h-5" />
+                TIẾN VÀO VÒNG THỬ THÁCH
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* 8 Briefcases Grid */}
-      <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8">
+      {/* 8 Chests Arranged Exactly like Figma: 2 rows of 4 chests */}
+      <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 justify-items-center my-4">
         {briefcases.map((briefcase) => {
           const isChosen = briefcase.chosenByTeamId !== null;
           const isSelectable = !isAllPicked && !isChosen;
 
           return (
-            <BriefcaseCard
+            <ChestCard
               key={briefcase.id}
               briefcase={briefcase}
               teams={teams}
@@ -94,27 +91,24 @@ export const PickBriefcasesScreen: React.FC<PickBriefcasesScreenProps> = ({
         })}
       </div>
 
-      {/* Bottom Summary of Teams & Their Selected Briefcase */}
-      <div className="w-full max-w-4xl p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-        <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center sm:text-left">
-          Danh sách cặp đã chọn:
-        </h4>
+      {/* Bottom Teams Status Bar */}
+      <div className="w-full max-w-4xl mt-6 p-4 rounded-2xl bg-black/40 border border-amber-500/20 backdrop-blur-sm">
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           {teams.map((team) => (
             <div
               key={team.id}
-              className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition ${
+              className={`p-2.5 rounded-xl border text-center transition ${
                 team.initialBriefcaseId
-                  ? 'bg-slate-800/80 border-amber-500/40'
-                  : 'bg-slate-900/50 border-slate-800 border-dashed opacity-60'
+                  ? 'bg-amber-950/40 border-amber-500/40'
+                  : 'bg-black/30 border-amber-500/10 opacity-60'
               }`}
             >
-              <span className="text-xs font-bold text-slate-300 truncate w-full">
+              <span className="text-xs font-bold text-amber-200 truncate block">
                 {team.name}
               </span>
-              <span className="text-base sm:text-lg font-black text-amber-400 mt-1">
+              <span className="text-sm font-black text-amber-400 font-['Cinzel',serif] block mt-0.5">
                 {team.initialBriefcaseId
-                  ? `Cặp #${team.initialBriefcaseId}`
+                  ? `Rương #${team.initialBriefcaseId}`
                   : 'Chưa chọn'}
               </span>
             </div>

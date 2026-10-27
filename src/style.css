@@ -2,64 +2,71 @@
 
 @layer base {
   body {
-    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: radial-gradient(circle at center, #540e0e 0%, #360707 50%, #1c0303 100%);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #fef08a;
   }
 }
 
-/* Custom glowing and pulsing animations for gameshow excitement */
-@keyframes pulse-gold {
+/* Golden metallic button styling matching Figma */
+.gold-tile {
+  background: linear-gradient(135deg, #fef08a 0%, #facc15 25%, #ca8a04 70%, #a16207 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.5),
+    inset 0 2px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 3px rgba(113, 63, 18, 0.7);
+  border: 2px solid #fef08a;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gold-tile:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 
+    0 10px 20px -2px rgba(234, 179, 8, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(113, 63, 18, 0.8);
+}
+
+.gold-tile:active {
+  transform: scale(0.97);
+}
+
+/* Animations */
+@keyframes spin-very-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-very-slow {
+  animation: spin-very-slow 120s linear infinite;
+}
+
+@keyframes gold-shine {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), inset 0 0 10px rgba(245, 158, 11, 0.2);
+    filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.5));
   }
   50% {
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), inset 0 0 20px rgba(245, 158, 11, 0.5);
+    filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.8));
   }
 }
 
-@keyframes pulse-danger {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(239, 68, 68, 0.9);
-    transform: scale(1.03);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.animate-gold-glow {
-  animation: pulse-gold 2.5s infinite ease-in-out;
-}
-
-.animate-danger-glow {
-  animation: pulse-danger 0.8s infinite ease-in-out;
-}
-
-.animate-float {
-  animation: float 3s infinite ease-in-out;
+.animate-gold-shine {
+  animation: gold-shine 3s ease-in-out infinite;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(30, 5, 5, 0.8);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.4);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.8);
+  background: rgba(234, 179, 8, 0.5);
+  border-radius: 3px;
 }
