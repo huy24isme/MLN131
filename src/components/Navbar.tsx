@@ -32,28 +32,28 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isDealPhase = currentPhase === 'DEAL_OR_NO_DEAL';
 
   return (
-    <header className="sticky top-0 z-40 px-4 py-3 border-b-4 border-black bg-[#cf3532] shadow-md select-none">
+    <header className="sticky top-0 z-40 px-4 py-3 border-b-4 border-yellow-400 bg-[#12131a] shadow-xl select-none">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-        {/* Left: Canva style retro score label */}
-        <div className="flex items-center gap-4">
-          <div className="text-left font-['VT323',monospace] leading-none tracking-widest">
-            <div className="text-xs sm:text-sm text-yellow-300 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
-              GAME: DÒNG CHẢY SỬ VIỆT
+        {/* Left: Retro stats with high contrast on dark background */}
+        <div className="flex items-center gap-3">
+          <div className="text-left font-['VT323',monospace] leading-tight tracking-wider">
+            <div className="text-xs sm:text-sm text-yellow-400 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
+              👾 DÒNG CHẢY SỬ VIỆT
             </div>
-            <div className="text-lg sm:text-xl text-white font-bold drop-shadow-[2px_2px_0px_#000]">
+            <div className="text-lg sm:text-xl text-white font-bold drop-shadow-[1px_1px_0px_#000]">
               ĐIỂM CAO: 9999
             </div>
           </div>
         </div>
 
-        {/* Center: Canva [ MENU ] style 8-bit Buttons */}
+        {/* Center: Canva style 8-bit Buttons on dark navbar */}
         <nav aria-label="Điều hướng vòng thi" className="flex items-center gap-2 sm:gap-3 flex-wrap">
           {/* Rule button */}
           <button
             type="button"
             onClick={onOpenRules}
             aria-label="Xem luật chơi"
-            className="px-2.5 py-1 text-xs font-['Press_Start_2P',monospace] pixel-btn-blue font-bold cursor-pointer"
+            className="px-2.5 py-1 text-xs font-bold pixel-btn-blue cursor-pointer"
           >
             ?
           </button>
@@ -62,9 +62,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => onNavigatePhase?.('PICK_BRIEFCASES')}
-            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
+            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
               isChestPhase
-                ? 'pixel-tile-gold font-bold scale-105'
+                ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
             }`}
           >
@@ -75,9 +75,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => onNavigatePhase?.('QUIZ_BOARD')}
-            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
+            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
               isQuizPhase
-                ? 'pixel-tile-gold font-bold scale-105'
+                ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
             }`}
           >
@@ -88,9 +88,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => onNavigatePhase?.('DEAL_OR_NO_DEAL')}
-            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
+            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
               isDealPhase
-                ? 'pixel-tile-gold font-bold scale-105'
+                ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
             }`}
           >
@@ -98,13 +98,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </nav>
 
-        {/* Right: Golden Diamonds (from Canva) + Controls */}
+        {/* Right: Golden Diamonds 💎 + Utility Controls */}
         <div className="flex items-center gap-3">
-          {/* 3 Golden Diamonds matching Canva */}
+          {/* 3 Golden Diamonds */}
           <div className="hidden sm:flex items-center gap-1.5">
-            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
-            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
-            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
+            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
+            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
           </div>
 
           <div className="flex items-center gap-1.5">

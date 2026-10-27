@@ -229,10 +229,10 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#cf3532] text-white flex flex-col justify-between relative overflow-hidden select-none">
+    <div className="min-h-screen text-white flex flex-col justify-between relative overflow-hidden select-none">
       <TrongDongBackground />
 
-      {/* Top Navbar */}
+      {/* Top Navbar in Dark Slate Retro Theme */}
       <Navbar
         currentPhase={phase}
         isMuted={isMuted}
@@ -308,12 +308,12 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Bottom Right Pixel Slogan */}
+      {/* Bottom Right Slogan */}
       <div className="fixed bottom-3 right-6 pointer-events-none text-right z-30 select-none hidden sm:block">
         <span className="font-['VT323',monospace] text-yellow-300 text-xl block leading-tight drop-shadow-[2px_2px_0px_#000]">
           Còn gì đẹp hơn
         </span>
-        <span className="font-['Press_Start_2P',monospace] text-white text-xs block mt-1 tracking-wider pixel-text-shadow">
+        <span className="font-black text-white text-xs block mt-1 tracking-wider uppercase pixel-text-shadow">
           HÒA BÌNH - ĐỘC LẬP
         </span>
       </div>

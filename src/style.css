@@ -2,18 +2,18 @@
 
 @layer base {
   :root {
-    --pixel-red: #cf3532;
-    --pixel-dark-red: #9e1f1c;
+    --pixel-red-bg: #b92b27;
+    --pixel-red-dark: #8b1e1b;
+    --pixel-nav-dark: #12131a;
     --pixel-blue: #2563eb;
     --pixel-blue-dark: #1d4ed8;
     --pixel-blue-light: #60a5fa;
     --pixel-yellow: #facc15;
     --pixel-green: #16a34a;
-    --pixel-green-dark: #15803d;
   }
 
   body {
-    background-color: var(--pixel-red);
+    background: radial-gradient(circle at 50% 30%, #be312d 0%, #a32220 70%, #7e1715 100%);
     font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #ffffff;
   }
@@ -27,25 +27,29 @@
   }
 }
 
-/* 8-Bit Pixel Utility Typography */
-.font-pixel {
-  font-family: 'Press Start 2P', 'Be Vietnam Pro', monospace;
+/* 8-Bit Pixel Typography */
+.font-pixel-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .font-pixel-mono {
-  font-family: 'VT323', 'Be Vietnam Pro', monospace;
-  font-size: 1.25rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.35rem;
+  letter-spacing: 0.05em;
 }
 
 /* 8-Bit Box / Window Container */
 .pixel-box {
-  background: #991f1c;
+  background: #8b1e1c;
   border: 3px solid #000000;
   box-shadow: 4px 4px 0px #000000;
 }
 
 .pixel-box-dark {
-  background: #1e0505;
+  background: #140505;
   border: 3px solid #000000;
   box-shadow: 4px 4px 0px #000000;
 }
@@ -130,7 +134,7 @@
   box-shadow: inset -2px -2px 0px #991b1b, inset 2px 2px 0px #f87171, 1px 1px 0px #000000;
 }
 
-/* Pixel text drop shadow matching "CÙNG CHƠI CỜ NÀO" */
+/* Crisp pixel text drop shadow */
 .pixel-text-shadow {
   text-shadow: 3px 3px 0px #000000;
 }
@@ -145,7 +149,7 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #8b1e1c;
+  background: #6b1513;
 }
 ::-webkit-scrollbar-thumb {
   background: #facc15;
