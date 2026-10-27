@@ -70,13 +70,13 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
     <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6 flex flex-col items-center relative z-10 select-none">
       {/* Title */}
       <div className="text-center mb-4">
-        <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 block mb-1 uppercase drop-shadow-[1px_1px_0px_#000]">
+        <span className="font-['VT323',monospace] text-lg text-yellow-300 block mb-1 uppercase drop-shadow-[1px_1px_0px_#000] tracking-wide">
           STAGE 4: OPEN THE TREASURES
         </span>
-        <h2 className="text-xl sm:text-3xl font-black text-white font-['Press_Start_2P',monospace] pixel-text-shadow">
+        <h2 className="text-3xl sm:text-5xl font-black text-white font-['VT323',monospace] pixel-text-shadow tracking-wider">
           MỞ RƯƠNG SỨ MỆNH
         </h2>
-        <p className="font-['VT323',monospace] text-base sm:text-lg text-yellow-200 mt-1 max-w-lg mx-auto">
+        <p className="font-['VT323',monospace] text-xl text-yellow-200 mt-1 max-w-lg mx-auto">
           Lần lượt mở khóa các rương để kích hoạt hiệu ứng bí ẩn và tính điểm chung cuộc!
         </p>
       </div>
@@ -102,20 +102,20 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span
-                    className={`px-2.5 py-1 text-[10px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${team.color} border border-black shadow-[1px_1px_0px_#000]`}
+                    className={`px-3 py-0.5 text-lg font-['VT323',monospace] font-bold text-white bg-gradient-to-r ${team.color} border border-black shadow-[1px_1px_0px_#000]`}
                   >
                     {team.name}
                   </span>
-                  <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300">
+                  <span className="font-['VT323',monospace] text-lg text-yellow-300 font-bold">
                     RƯƠNG #{briefcase.id}
                   </span>
                 </div>
 
                 <div className="p-2.5 bg-black border-2 border-white/60 mb-3 flex items-center justify-between">
-                  <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-200">
+                  <span className="font-['VT323',monospace] text-base text-yellow-200">
                     {team.hasSoldBriefcase ? 'ĐIỂM ĐÃ BÁN (+BTC):' : 'ĐIỂM HIỆN TẠI:'}
                   </span>
-                  <span className="text-xl sm:text-2xl font-black text-yellow-300 font-['VT323',monospace]">
+                  <span className="text-2xl sm:text-3xl font-black text-yellow-300 font-['VT323',monospace]">
                     {team.score} ĐIỂM
                   </span>
                 </div>
@@ -132,31 +132,31 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                         : 'bg-blue-600 text-white'
                     }`}
                   >
-                    <span className="font-['Press_Start_2P',monospace] text-[8px] uppercase block mb-1">
+                    <span className="font-['VT323',monospace] text-base uppercase block mb-1">
                       {team.hasSoldBriefcase
                         ? 'TRONG RƯƠNG ĐÃ BÁN LÀ:'
                         : 'HIỆU ỨNG KÍCH HOẠT:'}
                     </span>
-                    <span className="font-['Press_Start_2P',monospace] text-xs sm:text-sm block">
+                    <span className="font-['VT323',monospace] text-2xl font-black block">
                       {briefcase.label}
                     </span>
-                    <span className="font-['VT323',monospace] text-sm block mt-1">
+                    <span className="font-['VT323',monospace] text-lg block mt-1">
                       {briefcase.description}
                     </span>
                     {team.effectApplied && (
-                      <span className="inline-block mt-1 font-['Press_Start_2P',monospace] text-[8px] px-2 py-0.5 bg-black text-yellow-300 border border-white">
+                      <span className="inline-block mt-1 font-['VT323',monospace] text-sm px-2 py-0.5 bg-black text-yellow-300 border border-white font-bold">
                         {team.effectApplied}
                       </span>
                     )}
                   </div>
                 ) : (
                   <div className="p-4 bg-black/60 border-2 border-dashed border-white/50 text-center flex flex-col items-center justify-center">
-                    <span className="font-['Press_Start_2P',monospace] text-[9px] text-white">
+                    <span className="font-['VT323',monospace] text-lg text-white font-bold">
                       {team.hasSoldBriefcase
                         ? 'ĐỘI ĐÃ BÁN CHO BTC'
                         : 'RƯƠNG ĐANG KHÓA KÍN'}
                     </span>
-                    <span className="font-['VT323',monospace] text-base text-yellow-200 mt-1">
+                    <span className="font-['VT323',monospace] text-lg text-yellow-200 mt-1">
                       Bấm nút bên dưới để mở
                     </span>
                   </div>
@@ -168,13 +168,13 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => handleOpenBriefcase(team)}
-                    className="w-full py-2.5 font-['Press_Start_2P',monospace] text-xs pixel-btn-blue font-bold cursor-pointer"
+                    className="w-full py-2.5 font-['VT323',monospace] text-xl pixel-btn-blue font-bold cursor-pointer"
                   >
                     MỞ RƯƠNG #{briefcase.id}
                   </button>
                 ) : (
-                  <div className="w-full py-2 bg-black border border-white text-yellow-300 font-['Press_Start_2P',monospace] text-[9px] text-center flex items-center justify-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> ĐÃ MỞ
+                  <div className="w-full py-2 bg-black border border-white text-yellow-300 font-['VT323',monospace] text-lg text-center flex items-center justify-center gap-1.5 font-bold">
+                    <CheckCircle className="w-4 h-4 text-emerald-400" /> ĐÃ MỞ
                   </div>
                 )}
               </div>
@@ -186,7 +186,7 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
       {/* Unpicked Leftovers */}
       {isAllTeamBriefcasesOpened && (
         <div className="w-full max-w-4xl p-4 pixel-box mb-6 text-center">
-          <h4 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 uppercase mb-2 drop-shadow-[1px_1px_0px_#000]">
+          <h4 className="font-['VT323',monospace] text-xl text-yellow-300 uppercase mb-2 drop-shadow-[1px_1px_0px_#000] tracking-wide">
             KHO NIÊM PHONG: {leftoverBriefcases.length} RƯƠNG CÒN LẠI
           </h4>
           {!revealedLeftovers ? (
@@ -196,7 +196,7 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                 sound.playCorrect();
                 setRevealedLeftovers(true);
               }}
-              className="px-4 py-2 font-['Press_Start_2P',monospace] text-[9px] pixel-btn-blue cursor-pointer"
+              className="px-5 py-2 font-['VT323',monospace] text-lg pixel-btn-blue cursor-pointer"
             >
               XEM NỘI DUNG CÁC RƯƠNG TRONG KHO
             </button>
@@ -207,13 +207,13 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                   key={b.id}
                   className="p-2.5 bg-black border-2 border-white text-center"
                 >
-                  <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 block">
+                  <span className="font-['VT323',monospace] text-lg text-yellow-300 block font-bold">
                     RƯƠNG #{b.id}
                   </span>
-                  <span className="font-['Press_Start_2P',monospace] text-[10px] text-white block mt-1">
+                  <span className="font-['VT323',monospace] text-xl text-white block mt-1 font-bold">
                     {b.label}
                   </span>
-                  <span className="font-['VT323',monospace] text-sm text-stone-300 block">
+                  <span className="font-['VT323',monospace] text-base text-stone-300 block">
                     {b.description}
                   </span>
                 </div>
@@ -232,9 +232,9 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
               sound.playVictory();
               onFinishReveal();
             }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 font-['Press_Start_2P',monospace] text-xs sm:text-sm pixel-tile-gold font-black cursor-pointer shadow-[4px_4px_0px_#000]"
+            className="inline-flex items-center gap-2 px-8 py-3.5 font-['VT323',monospace] text-2xl pixel-tile-gold font-black cursor-pointer shadow-[4px_4px_0px_#000]"
           >
-            <Trophy className="w-5 h-5 fill-black" />
+            <Trophy className="w-6 h-6 fill-black" />
             XEM BẢNG VINH DANH CHUNG CUỘC 🏆
           </button>
         </div>
@@ -247,10 +247,10 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
             <div className="w-12 h-12 mx-auto mb-2 bg-yellow-300 border-2 border-black flex items-center justify-center">
               <RefreshCw className="w-6 h-6 text-black animate-spin" />
             </div>
-            <h3 className="text-base sm:text-xl font-black text-yellow-300 font-['Press_Start_2P',monospace] pixel-text-shadow">
+            <h3 className="text-2xl sm:text-3xl font-black text-yellow-300 font-['VT323',monospace] pixel-text-shadow tracking-wide">
               RƯƠNG ĐỔI ĐIỂM!
             </h3>
-            <p className="font-['VT323',monospace] text-lg text-yellow-100 mt-2">
+            <p className="font-['VT323',monospace] text-xl text-yellow-100 mt-2">
               <span className="font-bold text-white">{swappingTeam.name}</span> ({swappingTeam.score}đ) được quyền đổi toàn bộ điểm với 1 đội bất kỳ!
             </p>
 
@@ -265,11 +265,11 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                     className="w-full p-2.5 bg-black hover:bg-yellow-300 hover:text-black border-2 border-white flex items-center justify-between text-left cursor-pointer transition-colors group"
                   >
                     <span
-                      className={`px-2 py-0.5 text-[9px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${target.color} border border-black`}
+                      className={`px-3 py-0.5 text-base font-['VT323',monospace] font-bold text-white bg-gradient-to-r ${target.color} border border-black`}
                     >
                       {target.name}
                     </span>
-                    <span className="font-['VT323',monospace] text-xl font-black text-yellow-300 group-hover:text-black">
+                    <span className="font-['VT323',monospace] text-2xl font-black text-yellow-300 group-hover:text-black">
                       {target.score} ĐIỂM
                     </span>
                   </button>

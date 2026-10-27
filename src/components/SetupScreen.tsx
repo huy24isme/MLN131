@@ -56,10 +56,10 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
           <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
           <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
         </div>
-        <h1 className="font-['Press_Start_2P',monospace] text-2xl sm:text-4xl font-black text-white pixel-text-shadow leading-tight">
+        <h1 className="font-['VT323',monospace] text-4xl sm:text-6xl font-black text-white pixel-text-shadow leading-tight tracking-wider">
           CÙNG CHƠI CỜ NÀO
         </h1>
-        <p className="font-['VT323',monospace] text-lg sm:text-xl text-yellow-300 mt-2">
+        <p className="font-['VT323',monospace] text-xl sm:text-2xl text-yellow-300 mt-1 tracking-wide">
           GAME SHOW LỚP HỌC &bull; 8 RƯƠNG SỨ MỆNH &bull; 20 CÂU HỎI THỬ THÁCH
         </p>
       </div>
@@ -69,10 +69,10 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
         {/* Step 1: Select Team Count */}
         <div className="mb-5">
           <div className="flex items-center justify-between mb-2">
-            <label className="font-['Press_Start_2P',monospace] text-[10px] sm:text-xs text-yellow-300 flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-yellow-300" /> 1. CHỌN SỐ LƯỢNG ĐỘI:
+            <label className="font-['VT323',monospace] text-xl sm:text-2xl text-yellow-300 flex items-center gap-1.5 tracking-wide">
+              <Users className="w-5 h-5 text-yellow-300" /> 1. CHỌN SỐ LƯỢNG ĐỘI:
             </label>
-            <span className="font-['Press_Start_2P',monospace] text-xs text-white">{teamCount} ĐỘI</span>
+            <span className="font-['VT323',monospace] text-xl sm:text-2xl text-white font-bold">{teamCount} ĐỘI</span>
           </div>
 
           <div className="grid grid-cols-4 gap-2">
@@ -81,7 +81,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
                 key={count}
                 type="button"
                 onClick={() => setTeamCount(count)}
-                className={`py-2 font-['Press_Start_2P',monospace] text-[10px] sm:text-xs cursor-pointer transition-transform ${
+                className={`py-2 font-['VT323',monospace] text-lg sm:text-xl cursor-pointer transition-transform ${
                   teamCount === count
                     ? 'pixel-tile-gold font-bold scale-105'
                     : 'pixel-btn-blue'
@@ -95,7 +95,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
 
         {/* Step 2: Team Names Input */}
         <div className="mb-5">
-          <label className="block font-['Press_Start_2P',monospace] text-[10px] sm:text-xs text-yellow-300 mb-2">
+          <label className="block font-['VT323',monospace] text-xl sm:text-2xl text-yellow-300 mb-2 tracking-wide">
             2. ĐẶT TÊN CÁC ĐỘI / TỔ:
           </label>
           <div className="space-y-2">
@@ -105,7 +105,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
                 className="flex items-center gap-2.5 p-2 bg-black border-2 border-white/60 shadow-[2px_2px_0px_#000]"
               >
                 <div
-                  className={`w-7 h-7 bg-gradient-to-br ${TEAM_COLOR_PRESETS[index].color} flex items-center justify-center font-['Press_Start_2P',monospace] text-white text-[10px] border border-white`}
+                  className={`w-8 h-8 bg-gradient-to-br ${TEAM_COLOR_PRESETS[index].color} flex items-center justify-center font-['VT323',monospace] text-white text-lg font-bold border border-white`}
                 >
                   {index + 1}
                 </div>
@@ -114,7 +114,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
                   value={teamNames[index] || ''}
                   onChange={(e) => handleTeamNameChange(index, e.target.value)}
                   placeholder={`Tên Đội ${index + 1}...`}
-                  className="flex-1 bg-transparent border-none text-base text-yellow-200 font-bold focus:outline-none font-['VT323',monospace]"
+                  className="flex-1 bg-transparent border-none text-xl sm:text-2xl text-yellow-200 font-bold focus:outline-none font-['VT323',monospace]"
                 />
               </div>
             ))}
@@ -126,18 +126,18 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
           <button
             type="button"
             onClick={onOpenQuestionEditor}
-            className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2.5 pixel-btn-blue font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-5 py-2.5 pixel-btn-blue font-['VT323',monospace] text-lg sm:text-xl cursor-pointer"
           >
-            <Settings2 className="w-3.5 h-3.5" />
+            <Settings2 className="w-5 h-5" />
             CHỈNH SỬA 20 CÂU HỎI
           </button>
 
           <button
             type="button"
             onClick={handleStart}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 pixel-tile-gold font-['Press_Start_2P',monospace] text-xs font-black cursor-pointer animate-pulse"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 pixel-tile-gold font-['VT323',monospace] text-xl sm:text-2xl font-black cursor-pointer animate-pulse"
           >
-            <Play className="w-4 h-4 fill-black" />
+            <Play className="w-5 h-5 fill-black" />
             START GAME (CHỌN RƯƠNG)
           </button>
         </div>

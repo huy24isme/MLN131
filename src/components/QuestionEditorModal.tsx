@@ -43,10 +43,10 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b-2 border-black">
           <div>
-            <h2 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 pixel-text-shadow">
+            <h2 className="text-2xl sm:text-3xl font-black font-['VT323',monospace] text-yellow-300 pixel-text-shadow tracking-wider">
               CHỈNH SỬA BỘ 20 CÂU HỎI
             </h2>
-            <p className="font-['VT323',monospace] text-base text-yellow-200 mt-1">
+            <p className="font-['VT323',monospace] text-lg text-yellow-200 mt-1">
               Bạn có thể tự nhập câu hỏi, đáp án và điểm số của môn học lớp bạn
             </p>
           </div>
@@ -72,15 +72,15 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
               }`}
             >
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300">
+                <span className="font-['VT323',monospace] text-xl font-bold text-yellow-300">
                   CÂU {q.id} {q.points === 10 && '🔥 [JACKPOT 10 ĐIỂM]'}
                 </span>
                 <div className="flex items-center gap-2">
-                  <label className="font-['Press_Start_2P',monospace] text-[9px] text-stone-300">Điểm:</label>
+                  <label className="font-['VT323',monospace] text-lg text-stone-300">Điểm:</label>
                   <select
                     value={q.points}
                     onChange={(e) => handleUpdate(q.id, 'points', Number(e.target.value))}
-                    className="bg-black border border-white text-yellow-300 font-bold px-2 py-0.5 text-xs focus:outline-none"
+                    className="bg-black border border-white text-yellow-300 font-bold px-2 py-0.5 text-base focus:outline-none font-['VT323',monospace]"
                   >
                     <option value={1}>1 điểm</option>
                     <option value={2}>2 điểm</option>
@@ -95,7 +95,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
               {/* Question Text */}
               <div className="space-y-2">
                 <div>
-                  <label className="block font-['Press_Start_2P',monospace] text-[8px] text-stone-300 mb-1">
+                  <label className="block font-['VT323',monospace] text-base text-stone-300 mb-1">
                     Nội dung câu hỏi:
                   </label>
                   <textarea
@@ -109,7 +109,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
 
                 {/* Answer Text */}
                 <div>
-                  <label className="block font-['Press_Start_2P',monospace] text-[8px] text-emerald-400 mb-1">
+                  <label className="block font-['VT323',monospace] text-base text-emerald-400 mb-1">
                     Đáp án đúng (chỉ MC nhìn thấy để đối chiếu):
                   </label>
                   <input
@@ -130,9 +130,9 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
           <button
             type="button"
             onClick={handleResetDefaults}
-            className="flex items-center gap-1.5 px-3 py-1.5 pixel-btn-blue font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 pixel-btn-blue font-['VT323',monospace] text-base cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
             KHÔI PHỤC MẶC ĐỊNH
           </button>
 
@@ -140,16 +140,16 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-1.5 pixel-btn-red font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
+              className="px-4 py-2 pixel-btn-red font-['VT323',monospace] text-base cursor-pointer"
             >
               HỦY
             </button>
             <button
               type="button"
               onClick={handleSaveAndClose}
-              className="flex items-center gap-1.5 px-5 py-1.5 pixel-tile-gold font-['Press_Start_2P',monospace] text-[9px] font-black cursor-pointer"
+              className="flex items-center gap-1.5 px-5 py-2 pixel-tile-gold font-['VT323',monospace] text-base font-black cursor-pointer"
             >
-              <Save className="w-3.5 h-3.5" />
+              <Save className="w-4 h-4" />
               LƯU & ÁP DỤNG
             </button>
           </div>

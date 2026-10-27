@@ -26,22 +26,22 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
             <HelpCircle className="w-6 h-6 text-black" />
           </div>
           <div>
-            <h2 className="text-sm sm:text-base font-black text-yellow-300 font-['Press_Start_2P',monospace] pixel-text-shadow">
+            <h2 className="text-2xl sm:text-3xl font-black text-yellow-300 font-['VT323',monospace] pixel-text-shadow tracking-wider">
               LUẬT CHƠI RETRO QUIZ
             </h2>
-            <p className="font-['VT323',monospace] text-base text-yellow-200">CHIẾC CẶP / RƯƠNG SỨ MỆNH LỚP HỌC</p>
+            <p className="font-['VT323',monospace] text-xl text-yellow-200">CHIẾC CẶP / RƯƠNG SỨ MỆNH LỚP HỌC</p>
           </div>
         </div>
 
         <div className="space-y-3 font-['Be_Vietnam_Pro',sans-serif] text-xs sm:text-sm">
           <div className="p-3 bg-black border-2 border-white/60">
-            <h3 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 flex items-center gap-2 mb-1">
+            <h3 className="font-['VT323',monospace] text-xl text-yellow-300 flex items-center gap-2 mb-1 tracking-wide">
               1. RƯƠNG SỨ MỆNH (8 RƯƠNG)
             </h3>
-            <p className="text-stone-200 text-xs">
+            <p className="text-stone-200 text-xs sm:text-sm">
               Mỗi đội chọn 1 rương từ đầu và chưa được mở. Trong 8 rương chứa các hiệu ứng đặc biệt:
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mt-2 font-['Press_Start_2P',monospace] text-[8px] text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mt-2 font-['VT323',monospace] text-base font-bold text-center">
               <span className="p-1 bg-[#15803d] text-white border border-white">+10 Điểm</span>
               <span className="p-1 bg-[#1d4ed8] text-white border border-white">Nhân đôi (x2)</span>
               <span className="p-1 bg-[#7c3aed] text-white border border-white">Đổi điểm</span>
@@ -54,10 +54,10 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="p-3 bg-black border-2 border-white/60">
-            <h3 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 flex items-center gap-2 mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-yellow-300" /> 2. THỬ THÁCH (20 CÂU HỎI)
+            <h3 className="font-['VT323',monospace] text-xl text-yellow-300 flex items-center gap-2 mb-1 tracking-wide">
+              <Sparkles className="w-4 h-4 text-yellow-300" /> 2. THỬ THÁCH (20 CÂU HỎI)
             </h3>
-            <ul className="list-disc list-inside space-y-1 text-stone-200 text-xs">
+            <ul className="list-disc list-inside space-y-1 text-stone-200 text-xs sm:text-sm">
               <li>20 ô số vàng kim (01 đến 20). Điểm và nội dung hoàn toàn ẩn giấu.</li>
               <li>Điểm rải từ 1 đến 5 điểm và duy nhất 1 câu <strong>JACKPOT 10 điểm</strong>.</li>
               <li>Mỗi câu có 10 giây suy nghĩ: Đúng nhận điểm, Sai không có điểm.</li>
@@ -65,10 +65,10 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="p-3 bg-black border-2 border-white/60">
-            <h3 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 flex items-center gap-2 mb-1">
-              <DollarSign className="w-3.5 h-3.5 text-yellow-300" /> 3. ĐẤU GIÁ (MUA BÁN RƯƠNG)
+            <h3 className="font-['VT323',monospace] text-xl text-yellow-300 flex items-center gap-2 mb-1 tracking-wide">
+              <DollarSign className="w-4 h-4 text-yellow-300" /> 3. ĐẤU GIÁ (MUA BÁN RƯƠNG)
             </h3>
-            <ul className="list-disc list-inside space-y-1 text-stone-200 text-xs">
+            <ul className="list-disc list-inside space-y-1 text-stone-200 text-xs sm:text-sm">
               <li>Đội điểm thấp nhất đàm phán trước.</li>
               <li>BTC đưa ra mức giá mua lại rương (tối đa 8 điểm).</li>
               <li>Đội có 10 giây chọn: <strong>BÁN</strong> (nhận điểm an toàn) hoặc <strong>GIỮ</strong> (chờ mở).</li>
@@ -76,10 +76,10 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="p-3 bg-black border-2 border-white/60">
-            <h3 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 flex items-center gap-2 mb-1">
-              <Trophy className="w-3.5 h-3.5 text-yellow-300" /> 4. MỞ RƯƠNG & XẾP HẠNG
+            <h3 className="font-['VT323',monospace] text-xl text-yellow-300 flex items-center gap-2 mb-1 tracking-wide">
+              <Trophy className="w-4 h-4 text-yellow-300" /> 4. MỞ RƯƠNG & XẾP HẠNG
             </h3>
-            <p className="text-stone-200 text-xs">
+            <p className="text-stone-200 text-xs sm:text-sm">
               Mở những rương còn lại để áp dụng hiệu ứng và tìm ra đội vô địch chung cuộc 🏆!
             </p>
           </div>
@@ -89,7 +89,7 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 pixel-tile-gold font-['Press_Start_2P',monospace] text-[9px] font-black cursor-pointer"
+            className="px-6 py-2 pixel-tile-gold font-['VT323',monospace] text-xl font-black cursor-pointer"
           >
             ĐÃ HIỂU LUẬT CHƠI
           </button>

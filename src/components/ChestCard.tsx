@@ -27,7 +27,7 @@ export const ChestCard: React.FC<ChestCardProps> = ({
       onClick={isSelectable ? onSelect : undefined}
       disabled={!isSelectable && !assignedTeam}
       aria-label={`Rương số ${briefcase.id}${assignedTeam ? ` của ${assignedTeam.name}` : ''}`}
-      className={`relative group flex flex-col items-center select-none transition-transform duration-100 p-2 cursor-pointer ${
+      className={`relative group flex flex-col items-center select-none transition-transform duration-100 p-2 cursor-pointer font-['VT323',monospace] ${
         isSelectable
           ? 'hover:-translate-y-1 hover:scale-105 active:translate-y-1'
           : assignedTeam
@@ -83,7 +83,7 @@ export const ChestCard: React.FC<ChestCardProps> = ({
         {/* Revealed Effect Overlay */}
         {showContent && briefcase.isOpened && (
           <div className="absolute inset-0 z-10 bg-black/95 border-2 border-yellow-300 p-2 flex flex-col items-center justify-center text-center">
-            <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 block leading-tight">
+            <span className="text-sm text-yellow-300 block leading-tight font-bold">
               {briefcase.label}
             </span>
           </div>
@@ -93,7 +93,7 @@ export const ChestCard: React.FC<ChestCardProps> = ({
       {/* 8-Bit Parchment Banner [ RƯƠNG 0X ] */}
       <div className="relative -mt-1 z-10">
         <div
-          className={`px-3 py-1 font-['Press_Start_2P',monospace] text-[10px] tracking-wider uppercase border-2 border-black ${
+          className={`px-3 py-0.5 text-base sm:text-lg tracking-wider uppercase border-2 border-black font-bold ${
             assignedTeam
               ? 'bg-yellow-300 text-black shadow-[2px_2px_0px_#000]'
               : 'bg-white text-black shadow-[2px_2px_0px_#000]'
@@ -106,9 +106,9 @@ export const ChestCard: React.FC<ChestCardProps> = ({
         {assignedTeam && (
           <div className="text-center mt-1">
             <span
-              className={`inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${assignedTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
+              className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs text-white bg-gradient-to-r ${assignedTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
             >
-              <Check className="w-2.5 h-2.5 stroke-[3]" />
+              <Check className="w-3 h-3 stroke-[3]" />
               {assignedTeam.name}
             </span>
           </div>

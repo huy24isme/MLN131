@@ -78,13 +78,13 @@ export const DealScreen: React.FC<DealScreenProps> = ({
     <div className="w-full max-w-4xl mx-auto px-4 py-4 sm:py-6 flex flex-col items-center relative z-10 select-none">
       {/* Title */}
       <div className="text-center mb-4">
-        <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 block mb-1 uppercase drop-shadow-[1px_1px_0px_#000]">
+        <span className="font-['VT323',monospace] text-lg text-yellow-300 block mb-1 uppercase drop-shadow-[1px_1px_0px_#000] tracking-wide">
           STAGE 3: TRADE & NEGOTIATION
         </span>
-        <h2 className="text-xl sm:text-3xl font-black text-white font-['Press_Start_2P',monospace] pixel-text-shadow">
+        <h2 className="text-3xl sm:text-5xl font-black text-white font-['VT323',monospace] pixel-text-shadow tracking-wider">
           ĐẤU GIÁ RƯƠNG
         </h2>
-        <p className="font-['VT323',monospace] text-base sm:text-lg text-yellow-200 mt-1 max-w-lg mx-auto">
+        <p className="font-['VT323',monospace] text-xl text-yellow-200 mt-1 max-w-lg mx-auto">
           Đội điểm thấp nhất đàm phán trước. BTC ra giá mua rương (tối đa 8đ). Chọn: BÁN hay GIỮ RƯƠNG?
         </p>
       </div>
@@ -94,26 +94,26 @@ export const DealScreen: React.FC<DealScreenProps> = ({
           {/* Active Team Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-black">
             <div>
-              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 uppercase block">
+              <span className="font-['VT323',monospace] text-lg text-yellow-300 uppercase block tracking-wide">
                 ĐANG ĐÀM PHÁN ({currentIndex + 1}/{sortedTeamIds.length}):
               </span>
               <div className="flex items-center gap-2 mt-1">
                 <span
-                  className={`text-sm sm:text-base font-['Press_Start_2P',monospace] px-3 py-1 text-white bg-gradient-to-r ${currentTeam.color} border-2 border-black shadow-[2px_2px_0px_#000]`}
+                  className={`text-xl sm:text-2xl font-['VT323',monospace] font-bold px-3 py-1 text-white bg-gradient-to-r ${currentTeam.color} border-2 border-black shadow-[2px_2px_0px_#000]`}
                 >
                   {currentTeam.name}
                 </span>
-                <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 px-2 py-1 bg-black border border-white">
+                <span className="font-['VT323',monospace] text-lg text-yellow-300 px-2.5 py-1 bg-black border border-white font-bold">
                   RƯƠNG #{currentTeam.initialBriefcaseId}
                 </span>
               </div>
             </div>
 
             <div className="text-right">
-              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-200 block">
+              <span className="font-['VT323',monospace] text-lg text-yellow-200 block">
                 ĐIỂM HIỆN TẠI:
               </span>
-              <div className="text-2xl sm:text-3xl font-black text-yellow-300 font-['VT323',monospace]">
+              <div className="text-3xl sm:text-4xl font-black text-yellow-300 font-['VT323',monospace]">
                 {currentTeam.score} ĐIỂM
               </div>
             </div>
@@ -122,10 +122,10 @@ export const DealScreen: React.FC<DealScreenProps> = ({
           {/* Offer Setter (BTC Controls) */}
           <div className="py-4 border-b-2 border-black">
             <div className="flex items-center justify-between mb-2">
-              <label className="font-['Press_Start_2P',monospace] text-[10px] sm:text-xs text-white flex items-center gap-1.5">
-                <DollarSign className="w-4 h-4 text-yellow-300" /> BTC RA GIÁ MUA RƯƠNG:
+              <label className="font-['VT323',monospace] text-xl text-white flex items-center gap-1.5 tracking-wide">
+                <DollarSign className="w-5 h-5 text-yellow-300" /> BTC RA GIÁ MUA RƯƠNG:
               </label>
-              <span className="font-['Press_Start_2P',monospace] text-base sm:text-xl text-yellow-300 pixel-text-shadow">
+              <span className="font-['VT323',monospace] text-3xl font-black text-yellow-300 pixel-text-shadow">
                 +{offerPoints} ĐIỂM
               </span>
             </div>
@@ -137,7 +137,7 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                   key={pts}
                   type="button"
                   onClick={() => setOfferPoints(pts)}
-                  className={`py-1.5 font-['Press_Start_2P',monospace] text-[10px] cursor-pointer ${
+                  className={`py-1.5 font-['VT323',monospace] text-xl font-bold cursor-pointer ${
                     offerPoints === pts
                       ? 'pixel-tile-gold font-black scale-105'
                       : 'pixel-btn-blue'
@@ -153,7 +153,7 @@ export const DealScreen: React.FC<DealScreenProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 border-b-2 border-black">
             <div className="flex items-center gap-3">
               <div
-                className={`w-12 h-12 flex items-center justify-center font-['Press_Start_2P',monospace] text-base border-2 border-black shadow-[2px_2px_0px_#000] ${
+                className={`w-12 h-12 flex items-center justify-center font-['VT323',monospace] text-2xl font-black border-2 border-black shadow-[2px_2px_0px_#000] ${
                   decisionTimeLeft <= 3
                     ? 'bg-rose-600 text-white animate-pulse'
                     : 'bg-yellow-300 text-black'
@@ -162,10 +162,10 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                 {decisionTimeLeft}
               </div>
               <div>
-                <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 uppercase block">
+                <span className="font-['VT323',monospace] text-base text-yellow-300 uppercase block tracking-wide">
                   10 GIÂY QUYẾT ĐỊNH
                 </span>
-                <span className="font-['VT323',monospace] text-base text-yellow-200">
+                <span className="font-['VT323',monospace] text-lg text-yellow-200">
                   {isTimerRunning ? 'Đang đếm...' : 'Sẵn sàng chốt'}
                 </span>
               </div>
@@ -179,17 +179,17 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                     if (decisionTimeLeft === 0) setDecisionTimeLeft(10);
                     setIsTimerRunning(true);
                   }}
-                  className="px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-green cursor-pointer"
+                  className="px-4 py-2 font-['VT323',monospace] text-lg pixel-btn-green cursor-pointer"
                 >
-                  <Play className="w-3 h-3 fill-white inline mr-1" /> BẮT ĐẦU 10S
+                  <Play className="w-4 h-4 fill-white inline mr-1" /> BẮT ĐẦU 10S
                 </button>
               ) : (
                 <button
                   type="button"
                   onClick={() => setIsTimerRunning(false)}
-                  className="px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-tile-gold cursor-pointer"
+                  className="px-4 py-2 font-['VT323',monospace] text-lg pixel-tile-gold cursor-pointer"
                 >
-                  <Pause className="w-3 h-3 fill-black inline mr-1" /> TẠM DỪNG
+                  <Pause className="w-4 h-4 fill-black inline mr-1" /> TẠM DỪNG
                 </button>
               )}
               <button
@@ -201,7 +201,7 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                 aria-label="Đặt lại thời gian"
                 className="p-2 pixel-btn-blue cursor-pointer"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
+                <RotateCcw className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -214,13 +214,13 @@ export const DealScreen: React.FC<DealScreenProps> = ({
               onClick={() => handleDecision(true)}
               className="p-4 pixel-btn-green cursor-pointer flex flex-col items-center justify-center text-center"
             >
-              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-200">
+              <span className="font-['VT323',monospace] text-base text-yellow-200 tracking-wide">
                 LỰA CHỌN AN TOÀN
               </span>
-              <span className="font-['Press_Start_2P',monospace] text-xs sm:text-sm font-black mt-1">
+              <span className="font-['VT323',monospace] text-2xl sm:text-3xl font-black mt-1">
                 BÁN RƯƠNG (+{offerPoints}Đ)
               </span>
-              <span className="font-['VT323',monospace] text-sm text-yellow-100 mt-1">
+              <span className="font-['VT323',monospace] text-lg text-yellow-100 mt-1">
                 Nhận điểm ngay từ BTC, khóa rương
               </span>
             </button>
@@ -231,13 +231,13 @@ export const DealScreen: React.FC<DealScreenProps> = ({
               onClick={() => handleDecision(false)}
               className="p-4 pixel-btn-blue cursor-pointer flex flex-col items-center justify-center text-center"
             >
-              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-200">
+              <span className="font-['VT323',monospace] text-base text-yellow-200 tracking-wide">
                 CHẤP NHẬN MẠO HIỂM
               </span>
-              <span className="font-['Press_Start_2P',monospace] text-xs sm:text-sm font-black mt-1">
+              <span className="font-['VT323',monospace] text-2xl sm:text-3xl font-black mt-1">
                 GIỮ RƯƠNG ĐỂ MỞ
               </span>
-              <span className="font-['VT323',monospace] text-sm text-yellow-100 mt-1">
+              <span className="font-['VT323',monospace] text-lg text-yellow-100 mt-1">
                 Chờ đợi x2, +10 hoặc đổi điểm lật kèo
               </span>
             </button>
@@ -247,12 +247,12 @@ export const DealScreen: React.FC<DealScreenProps> = ({
         /* All Deals Finished */
         <div className="w-full pixel-box p-6 text-center">
           <div className="w-12 h-12 mx-auto mb-3 bg-black border-2 border-yellow-300 flex items-center justify-center">
-            <ShieldCheck className="w-6 h-6 text-yellow-300" />
+            <ShieldCheck className="w-7 h-7 text-yellow-300" />
           </div>
-          <h3 className="text-base sm:text-xl font-black text-yellow-300 font-['Press_Start_2P',monospace] pixel-text-shadow">
+          <h3 className="text-2xl sm:text-4xl font-black text-yellow-300 font-['VT323',monospace] pixel-text-shadow tracking-wide">
             HOÀN TẤT ĐẤU GIÁ!
           </h3>
-          <p className="font-['VT323',monospace] text-lg text-yellow-200 mt-2 max-w-md mx-auto">
+          <p className="font-['VT323',monospace] text-xl text-yellow-200 mt-2 max-w-md mx-auto">
             Tất cả các đội đã chốt phương án. Giờ là lúc giải phong ấn các Rương Sứ Mệnh!
           </p>
 
@@ -263,10 +263,10 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                 sound.playSuspense();
                 onFinishDeals();
               }}
-              className="inline-flex items-center gap-2 px-6 py-3 font-['Press_Start_2P',monospace] text-xs sm:text-sm pixel-tile-gold font-black cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 font-['VT323',monospace] text-xl sm:text-2xl pixel-tile-gold font-black cursor-pointer"
             >
               VÀO VÒNG MỞ RƯƠNG
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -290,8 +290,8 @@ export const DealScreen: React.FC<DealScreenProps> = ({
                     : 'bg-[#5e1210] text-stone-400'
                 }`}
               >
-                <span className="font-['VT323',monospace] text-base">{team.name}</span>
-                <span className="font-['Press_Start_2P',monospace] text-[9px]">
+                <span className="font-['VT323',monospace] text-lg">{team.name}</span>
+                <span className="font-['VT323',monospace] text-base font-bold">
                   {hasDecided
                     ? team.hasSoldBriefcase
                       ? `BÁN (+${team.dealOfferPoints})`

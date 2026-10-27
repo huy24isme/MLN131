@@ -32,37 +32,35 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isDealPhase = currentPhase === 'DEAL_OR_NO_DEAL';
 
   return (
-    <header className="sticky top-0 z-40 px-4 py-3 border-b-4 border-yellow-400 bg-[#12131a] shadow-xl select-none">
+    <header className="sticky top-0 z-40 px-4 py-2.5 border-b-4 border-yellow-400 bg-[#12131a] shadow-xl select-none font-['VT323',monospace]">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-        {/* Left: Retro stats with high contrast on dark background */}
+        {/* Left: Stats with VT323 font */}
         <div className="flex items-center gap-3">
-          <div className="text-left font-['VT323',monospace] leading-tight tracking-wider">
-            <div className="text-xs sm:text-sm text-yellow-400 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
+          <div className="text-left leading-none tracking-wider">
+            <div className="text-base text-yellow-400 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
               👾 DÒNG CHẢY SỬ VIỆT
             </div>
-            <div className="text-lg sm:text-xl text-white font-bold drop-shadow-[1px_1px_0px_#000]">
+            <div className="text-2xl text-white font-bold drop-shadow-[1px_1px_0px_#000]">
               ĐIỂM CAO: 9999
             </div>
           </div>
         </div>
 
-        {/* Center: Canva style 8-bit Buttons on dark navbar */}
+        {/* Center: Canva style 8-bit Buttons in VT323 */}
         <nav aria-label="Điều hướng vòng thi" className="flex items-center gap-2 sm:gap-3 flex-wrap">
-          {/* Rule button */}
           <button
             type="button"
             onClick={onOpenRules}
             aria-label="Xem luật chơi"
-            className="px-2.5 py-1 text-xs font-bold pixel-btn-blue cursor-pointer"
+            className="px-3 py-1 text-lg font-bold pixel-btn-blue cursor-pointer"
           >
-            ?
+            ? LUẬT
           </button>
 
-          {/* RƯƠNG SỨ MỆNH */}
           <button
             type="button"
             onClick={() => onNavigatePhase?.('PICK_BRIEFCASES')}
-            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
+            className={`px-3 py-1 text-lg font-bold uppercase cursor-pointer transition-transform ${
               isChestPhase
                 ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
@@ -71,11 +69,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             RƯƠNG SỨ MỆNH
           </button>
 
-          {/* THỬ THÁCH */}
           <button
             type="button"
             onClick={() => onNavigatePhase?.('QUIZ_BOARD')}
-            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
+            className={`px-3 py-1 text-lg font-bold uppercase cursor-pointer transition-transform ${
               isQuizPhase
                 ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
@@ -84,11 +81,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             20 CÂU HỎI
           </button>
 
-          {/* ĐẤU GIÁ */}
           <button
             type="button"
             onClick={() => onNavigatePhase?.('DEAL_OR_NO_DEAL')}
-            className={`px-3 py-1.5 text-xs font-bold uppercase cursor-pointer transition-transform ${
+            className={`px-3 py-1 text-lg font-bold uppercase cursor-pointer transition-transform ${
               isDealPhase
                 ? 'pixel-tile-gold scale-105'
                 : 'pixel-btn-blue'
@@ -100,11 +96,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right: Golden Diamonds 💎 + Utility Controls */}
         <div className="flex items-center gap-3">
-          {/* 3 Golden Diamonds */}
           <div className="hidden sm:flex items-center gap-1.5">
-            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
-            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
-            <span className="text-xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
+            <span className="text-2xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
+            <span className="text-2xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
+            <span className="text-2xl filter drop-shadow-[1px_1px_0px_#000]">💎</span>
           </div>
 
           <div className="flex items-center gap-1.5">

@@ -61,12 +61,12 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
         onClick={() => handleSelectQuestion(q)}
         disabled={isAnswered}
         aria-label={`Câu hỏi số ${formattedNum}${isAnswered ? (isCorrect ? ' - Đúng' : ' - Sai') : ''}`}
-        className={`relative w-9 h-9 sm:w-14 sm:h-14 md:w-18 md:h-18 flex items-center justify-center select-none font-['Press_Start_2P',monospace] cursor-pointer ${
+        className={`relative w-9 h-9 sm:w-14 sm:h-14 md:w-18 md:h-18 flex items-center justify-center select-none font-['VT323',monospace] cursor-pointer ${
           isAnswered
             ? isCorrect
               ? 'bg-[#15803d] border-3 border-black text-white shadow-[2px_2px_0px_#000] opacity-90 cursor-not-allowed'
               : 'bg-[#5e1210] border-3 border-black text-stone-400 shadow-[2px_2px_0px_#000] opacity-60 cursor-not-allowed'
-            : 'pixel-tile-gold font-black text-xs sm:text-base md:text-xl'
+            : 'pixel-tile-gold font-black text-lg sm:text-2xl md:text-3xl'
         }`}
       >
         {isAnswered ? (
@@ -74,19 +74,19 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
             {isCorrect ? (
               <>
                 <Check className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-yellow-300 stroke-[3]" />
-                <span className="text-[8px] sm:text-[9px] font-bold text-white mt-0.5">
+                <span className="text-xs sm:text-sm font-bold text-white mt-0.5 font-['VT323',monospace]">
                   +{q.points}
                 </span>
               </>
             ) : (
               <>
                 <X className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-rose-400 stroke-[3]" />
-                <span className="text-[8px] sm:text-[9px] font-bold text-rose-200 mt-0.5">0đ</span>
+                <span className="text-xs sm:text-sm font-bold text-rose-200 mt-0.5 font-['VT323',monospace]">0đ</span>
               </>
             )}
           </div>
         ) : (
-          <span className="tabular-nums">
+          <span className="tabular-nums tracking-wider">
             {formattedNum}
           </span>
         )}
@@ -99,16 +99,16 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
       {/* Top Banner: Current Turn & Finish Button */}
       <div className="w-full max-w-5xl flex flex-wrap items-center justify-between gap-3 mb-4">
         {/* Current Turn Badge */}
-        <div className="flex items-center gap-2.5 pixel-box px-3.5 py-2">
-          <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 uppercase">
+        <div className="flex items-center gap-2.5 pixel-box px-4 py-2">
+          <span className="font-['VT323',monospace] text-xl text-yellow-300 uppercase tracking-wide">
             LƯỢT:
           </span>
           <span
-            className={`px-2.5 py-1 text-xs font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${activeTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
+            className={`px-3 py-0.5 text-lg font-['VT323',monospace] font-bold text-white bg-gradient-to-r ${activeTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
           >
             {activeTeam.name}
           </span>
-          <span className="font-['VT323',monospace] text-base text-yellow-200">
+          <span className="font-['VT323',monospace] text-xl text-yellow-200">
             ({answeredCount}/20 CÂU ĐÃ MỞ)
           </span>
         </div>
@@ -129,14 +129,14 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
               sound.playCashDeal();
               onFinishQuiz();
             }}
-            className={`inline-flex items-center gap-2 px-4 py-2 font-['Press_Start_2P',monospace] text-xs cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-5 py-2 font-['VT323',monospace] text-xl cursor-pointer ${
               isAllAnswered
                 ? 'pixel-tile-gold font-black animate-bounce'
                 : 'pixel-btn-blue'
             }`}
           >
             <span>VÀO ĐẤU GIÁ</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -157,10 +157,10 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
       {/* Live Scoreboard */}
       <div className="w-full max-w-4xl mt-6 p-4 pixel-box">
         <div className="flex items-center justify-between mb-3">
-          <span className="font-['Press_Start_2P',monospace] text-[10px] uppercase text-yellow-300 flex items-center gap-1.5 drop-shadow-[1px_1px_0px_#000]">
-            <Award className="w-4 h-4" /> BẢNG ĐIỂM TRỰC TIẾP
+          <span className="font-['VT323',monospace] text-xl uppercase text-yellow-300 flex items-center gap-1.5 drop-shadow-[1px_1px_0px_#000] tracking-wide">
+            <Award className="w-5 h-5" /> BẢNG ĐIỂM TRỰC TIẾP
           </span>
-          <span className="font-['VT323',monospace] text-sm text-yellow-200/80">
+          <span className="font-['VT323',monospace] text-lg text-yellow-200/90">
             * Bấm vào tên đội để chuyển lượt thủ công
           </span>
         </div>
@@ -181,15 +181,15 @@ export const QuizBoardScreen: React.FC<QuizBoardScreenProps> = ({
               >
                 <div className="flex items-center justify-between mb-1">
                   <span
-                    className={`text-[9px] font-['Press_Start_2P',monospace] px-1.5 py-0.5 text-white bg-gradient-to-r ${team.color} border border-black truncate max-w-[75px]`}
+                    className={`text-sm font-['VT323',monospace] font-bold px-2 py-0.5 text-white bg-gradient-to-r ${team.color} border border-black truncate max-w-[85px]`}
                   >
                     {team.name}
                   </span>
-                  <span className={`text-[10px] font-bold ${isActive ? 'text-black' : 'text-yellow-300'}`}>
+                  <span className={`text-base font-['VT323',monospace] font-bold ${isActive ? 'text-black' : 'text-yellow-300'}`}>
                     #{team.initialBriefcaseId}
                   </span>
                 </div>
-                <div className={`text-xl sm:text-2xl font-black font-['VT323',monospace] ${isActive ? 'text-black' : 'text-yellow-300'}`}>
+                <div className={`text-2xl sm:text-3xl font-black font-['VT323',monospace] ${isActive ? 'text-black' : 'text-yellow-300'}`}>
                   {team.score} ĐIỂM
                 </div>
               </button>

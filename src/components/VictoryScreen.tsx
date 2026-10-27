@@ -69,21 +69,21 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
           <span className="text-3xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
         </div>
 
-        <h2 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 uppercase tracking-widest drop-shadow-[1px_1px_0px_#000]">
+        <h2 className="text-lg sm:text-xl font-['VT323',monospace] text-yellow-300 uppercase tracking-widest drop-shadow-[1px_1px_0px_#000]">
           GAME CLEAR!
         </h2>
-        <h1 className="text-2xl sm:text-4xl font-black text-white font-['Press_Start_2P',monospace] pixel-text-shadow mt-1">
+        <h1 className="text-4xl sm:text-6xl font-black text-white font-['VT323',monospace] pixel-text-shadow mt-1 tracking-wider">
           CHÚC MỪNG NHÀ VÔ ĐỊCH!
         </h1>
 
         {champion && (
           <div className="mt-4 flex flex-col items-center justify-center">
             <span
-              className={`px-8 py-3 text-xl sm:text-2xl font-black text-white bg-gradient-to-r ${champion.color} border-4 border-black shadow-[4px_4px_0px_#000] font-['Press_Start_2P',monospace] transform hover:scale-105 transition-transform`}
+              className={`px-8 py-3 text-3xl sm:text-4xl font-black text-white bg-gradient-to-r ${champion.color} border-4 border-black shadow-[4px_4px_0px_#000] font-['VT323',monospace] transform hover:scale-105 transition-transform tracking-wider`}
             >
               {champion.name}
             </span>
-            <span className="text-3xl sm:text-5xl font-black text-yellow-300 font-['VT323',monospace] mt-2 drop-shadow-[3px_3px_0px_#000]">
+            <span className="text-5xl sm:text-7xl font-black text-yellow-300 font-['VT323',monospace] mt-2 drop-shadow-[4px_4px_0px_#000]">
               {champion.score} ĐIỂM
             </span>
           </div>
@@ -92,8 +92,8 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
 
       {/* Leaderboard */}
       <div className="w-full pixel-box p-5 sm:p-6 mb-6">
-        <h3 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 mb-3 flex items-center gap-2 drop-shadow-[1px_1px_0px_#000]">
-          <Award className="w-4 h-4 text-yellow-300" /> BẢNG XẾP HẠNG TẤT CẢ CÁC ĐỘI
+        <h3 className="text-xl font-['VT323',monospace] text-yellow-300 mb-3 flex items-center gap-2 drop-shadow-[1px_1px_0px_#000] tracking-wide">
+          <Award className="w-5 h-5 text-yellow-300" /> BẢNG XẾP HẠNG TẤT CẢ CÁC ĐỘI
         </h3>
 
         <div className="space-y-2.5">
@@ -114,16 +114,16 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black text-white flex items-center justify-center font-['Press_Start_2P',monospace] text-xs border border-white">
+                  <div className="w-9 h-9 bg-black text-white flex items-center justify-center font-['VT323',monospace] text-xl font-bold border border-white">
                     {rank === 0 ? '🥇' : rank === 1 ? '🥈' : rank === 2 ? '🥉' : `#${rank + 1}`}
                   </div>
                   <div>
                     <span
-                      className={`text-xs font-['Press_Start_2P',monospace] px-2 py-0.5 text-white bg-gradient-to-r ${team.color} border border-black`}
+                      className={`text-lg font-['VT323',monospace] font-bold px-3 py-0.5 text-white bg-gradient-to-r ${team.color} border border-black`}
                     >
                       {team.name}
                     </span>
-                    <span className={`font-['VT323',monospace] text-base block mt-0.5 ${rank === 0 ? 'text-black' : 'text-yellow-200'}`}>
+                    <span className={`font-['VT323',monospace] text-lg block mt-0.5 ${rank === 0 ? 'text-black' : 'text-yellow-200'}`}>
                       {briefcase
                         ? `Rương #${briefcase.id} (${briefcase.label})`
                         : 'Không có rương'}
@@ -133,7 +133,7 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
                 </div>
 
                 <div className="text-right">
-                  <span className={`text-2xl sm:text-3xl font-black font-['VT323',monospace] ${rank === 0 ? 'text-black' : 'text-yellow-300'}`}>
+                  <span className={`text-3xl sm:text-4xl font-black font-['VT323',monospace] ${rank === 0 ? 'text-black' : 'text-yellow-300'}`}>
                     {team.score} ĐIỂM
                   </span>
                 </div>
@@ -148,9 +148,9 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
         <button
           type="button"
           onClick={onPlayAgain}
-          className="flex items-center gap-2 px-8 py-3.5 pixel-tile-gold font-['Press_Start_2P',monospace] text-xs sm:text-sm font-black cursor-pointer shadow-[4px_4px_0px_#000]"
+          className="flex items-center gap-2 px-8 py-3.5 pixel-tile-gold font-['VT323',monospace] text-2xl font-black cursor-pointer shadow-[4px_4px_0px_#000]"
         >
-          <RotateCcw className="w-4 h-4" />
+          <RotateCcw className="w-5 h-5" />
           CHƠI VÁN MỚI
         </button>
       </div>

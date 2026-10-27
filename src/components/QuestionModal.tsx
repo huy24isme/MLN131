@@ -103,25 +103,25 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b-2 border-black">
           <div className="flex items-center gap-2">
             <span
-              className={`px-2.5 py-1 text-[10px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${activeTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
+              className={`px-3 py-0.5 text-base font-['VT323',monospace] font-bold text-white bg-gradient-to-r ${activeTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
             >
               LƯỢT: {activeTeam.name}
             </span>
-            <span className="font-['Press_Start_2P',monospace] text-xs text-yellow-300">
+            <span className="font-['VT323',monospace] text-xl text-yellow-300 font-bold">
               CÂU {formattedNum} / 20
             </span>
           </div>
 
           <div
-            className={`px-3 py-1 font-['Press_Start_2P',monospace] text-xs flex items-center gap-1.5 border-2 border-black ${
+            className={`px-3.5 py-1 font-['VT323',monospace] text-xl font-bold flex items-center gap-1.5 border-2 border-black ${
               isJackpot
                 ? 'bg-yellow-300 text-black shadow-[2px_2px_0px_#000] animate-bounce'
                 : 'bg-blue-600 text-white shadow-[2px_2px_0px_#000]'
             }`}
           >
-            {isJackpot && <Sparkles className="w-3.5 h-3.5 fill-black" />}
+            {isJackpot && <Sparkles className="w-4 h-4 fill-black" />}
             <span>+{question.points} ĐIỂM</span>
-            {isJackpot && <span className="text-[9px] uppercase">(JACKPOT)</span>}
+            {isJackpot && <span className="text-sm uppercase font-black ml-1">(JACKPOT)</span>}
           </div>
         </div>
 
@@ -136,7 +136,7 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 bg-[#330808] border-2 border-black mb-4 shadow-[2px_2px_0px_#000]">
           <div className="flex items-center gap-3">
             <div
-              className={`w-12 h-12 flex items-center justify-center font-['Press_Start_2P',monospace] text-lg border-2 border-black shadow-[2px_2px_0px_#000] ${
+              className={`w-12 h-12 flex items-center justify-center font-['VT323',monospace] text-2xl font-black border-2 border-black shadow-[2px_2px_0px_#000] ${
                 timeLeft <= 3
                   ? 'bg-rose-600 text-white animate-pulse'
                   : 'bg-yellow-300 text-black'
@@ -145,10 +145,10 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
               {timeLeft}
             </div>
             <div>
-              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 uppercase block">
+              <span className="font-['VT323',monospace] text-base text-yellow-300 uppercase block tracking-wide">
                 THỜI GIAN TRẢ LỜI
               </span>
-              <span className="font-['VT323',monospace] text-base text-yellow-200">
+              <span className="font-['VT323',monospace] text-lg text-yellow-200">
                 {isRunning ? 'Đang đếm ngược...' : timeLeft === 0 ? 'Hết giờ!' : 'Sẵn sàng'}
               </span>
             </div>
@@ -159,17 +159,17 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
               <button
                 type="button"
                 onClick={handleStartTimer}
-                className="flex items-center gap-1.5 px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-green cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 font-['VT323',monospace] text-lg pixel-btn-green cursor-pointer"
               >
-                <Play className="w-3 h-3 fill-white" /> BẮT ĐẦU (10S)
+                <Play className="w-4 h-4 fill-white" /> BẮT ĐẦU (10S)
               </button>
             ) : (
               <button
                 type="button"
                 onClick={handlePauseTimer}
-                className="flex items-center gap-1.5 px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-tile-gold cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 font-['VT323',monospace] text-lg pixel-tile-gold cursor-pointer"
               >
-                <Pause className="w-3 h-3 fill-black" /> TẠM DỪNG
+                <Pause className="w-4 h-4 fill-black" /> TẠM DỪNG
               </button>
             )}
 
@@ -180,7 +180,7 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
               title="Đặt lại thời gian"
               className="p-2 pixel-btn-blue cursor-pointer"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -190,14 +190,14 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
           <button
             type="button"
             onClick={() => setShowAnswer(!showAnswer)}
-            className="inline-flex items-center gap-1.5 font-['VT323',monospace] text-base text-yellow-300 hover:text-white transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 font-['VT323',monospace] text-lg text-yellow-300 hover:text-white transition-colors cursor-pointer"
           >
             {showAnswer ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             {showAnswer ? 'ẨN ĐÁP ÁN' : 'XEM ĐÁP ÁN (DÀNH CHO QUẢN TRÒ / MC)'}
           </button>
 
           {showAnswer && (
-            <div className="mt-2 p-2.5 bg-black border-2 border-emerald-400 text-emerald-300 font-['VT323',monospace] text-lg animate-fadeIn">
+            <div className="mt-2 p-2.5 bg-black border-2 border-emerald-400 text-emerald-300 font-['VT323',monospace] text-xl animate-fadeIn">
               🎯 ĐÁP ÁN: <span className="text-white font-bold ml-1">{question.answer}</span>
             </div>
           )}
@@ -208,7 +208,7 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-3 py-2 font-['Press_Start_2P',monospace] text-[9px] pixel-btn-blue cursor-pointer"
+            className="px-4 py-2 font-['VT323',monospace] text-lg pixel-btn-blue cursor-pointer"
           >
             ĐÓNG
           </button>
@@ -217,18 +217,18 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
             <button
               type="button"
               onClick={() => onAnswer(false)}
-              className="flex items-center gap-1.5 px-4 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-red font-bold cursor-pointer"
+              className="flex items-center gap-1.5 px-4 py-2 font-['VT323',monospace] text-lg pixel-btn-red font-bold cursor-pointer"
             >
-              <X className="w-3.5 h-3.5 stroke-[3]" />
+              <X className="w-4 h-4 stroke-[3]" />
               TRẢ LỜI SAI (0đ)
             </button>
 
             <button
               type="button"
               onClick={() => onAnswer(true)}
-              className="flex items-center gap-1.5 px-5 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-green font-bold cursor-pointer"
+              className="flex items-center gap-1.5 px-5 py-2 font-['VT323',monospace] text-lg pixel-btn-green font-bold cursor-pointer"
             >
-              <Check className="w-3.5 h-3.5 stroke-[3]" />
+              <Check className="w-4 h-4 stroke-[3]" />
               TRẢ LỜI ĐÚNG (+{question.points}đ)
             </button>
           </div>
