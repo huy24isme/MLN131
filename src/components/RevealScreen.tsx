@@ -67,22 +67,22 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
   );
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-6 flex flex-col items-center relative z-10">
+    <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6 flex flex-col items-center relative z-10 select-none">
       {/* Title */}
-      <div className="text-center mb-6">
-        <span className="text-xs uppercase tracking-widest font-['Cinzel',serif] text-amber-300 font-bold">
-          KHOẢNH KHẮC ĐỊNH MỆNH
+      <div className="text-center mb-4">
+        <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 block mb-1 uppercase drop-shadow-[1px_1px_0px_#000]">
+          STAGE 4: OPEN THE TREASURES
         </span>
-        <h2 className="text-2xl sm:text-4xl font-black text-amber-400 font-['Cinzel',serif] mt-1 drop-shadow-md">
+        <h2 className="text-xl sm:text-3xl font-black text-white font-['Press_Start_2P',monospace] pixel-text-shadow">
           MỞ RƯƠNG SỨ MỆNH
         </h2>
-        <p className="text-xs sm:text-sm text-amber-200/70 mt-1 max-w-xl mx-auto">
-          Lần lượt khám phá bí mật bên trong rương của từng đội để định đoạt thứ hạng chung cuộc!
+        <p className="font-['VT323',monospace] text-base sm:text-lg text-yellow-200 mt-1 max-w-lg mx-auto">
+          Lần lượt mở khóa các rương để kích hoạt hiệu ứng bí ẩn và tính điểm chung cuộc!
         </p>
       </div>
 
       {/* Grid of Team Chests */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
         {teams.map((team) => {
           const briefcase = briefcases.find((b) => b.id === team.initialBriefcaseId);
           if (!briefcase) return null;
@@ -91,89 +91,90 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
           return (
             <div
               key={team.id}
-              className={`p-5 rounded-3xl border-2 transition-all flex flex-col justify-between shadow-2xl backdrop-blur-md ${
+              className={`p-4 pixel-box flex flex-col justify-between ${
                 team.hasSoldBriefcase
-                  ? 'bg-black/50 border-stone-700'
+                  ? 'bg-[#5e1210]'
                   : isOpened
-                  ? 'bg-black/70 border-amber-400 shadow-amber-500/20'
-                  : 'bg-black/60 border-amber-500/40 hover:border-amber-400'
+                  ? 'bg-[#15803d]'
+                  : 'bg-[#991f1c]'
               }`}
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span
-                    className={`px-3 py-1 rounded-xl text-xs font-black text-white bg-gradient-to-r ${team.color} shadow`}
+                    className={`px-2.5 py-1 text-[10px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${team.color} border border-black shadow-[1px_1px_0px_#000]`}
                   >
                     {team.name}
                   </span>
-                  <span className="text-xs font-['Cinzel',serif] font-bold text-amber-300">
-                    RƯƠNG SỐ {briefcase.id}
+                  <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300">
+                    RƯƠNG #{briefcase.id}
                   </span>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-black/40 border border-amber-500/20 mb-4 flex items-center justify-between">
-                  <span className="text-xs text-amber-200/70 font-semibold">
-                    {team.hasSoldBriefcase ? 'Điểm đã bán (+BTC):' : 'Điểm hiện tại:'}
+                <div className="p-2.5 bg-black border-2 border-white/60 mb-3 flex items-center justify-between">
+                  <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-200">
+                    {team.hasSoldBriefcase ? 'ĐIỂM ĐÃ BÁN (+BTC):' : 'ĐIỂM HIỆN TẠI:'}
                   </span>
-                  <span className="text-2xl font-black text-amber-400 font-['Cinzel',serif]">
-                    {team.score}đ
+                  <span className="text-xl sm:text-2xl font-black text-yellow-300 font-['VT323',monospace]">
+                    {team.score} ĐIỂM
                   </span>
                 </div>
 
                 {isOpened ? (
                   <div
-                    className={`p-4 rounded-2xl border text-center animate-fadeIn ${
+                    className={`p-3 border-2 border-black text-center ${
                       team.hasSoldBriefcase
-                        ? 'bg-black/50 border-stone-600 text-stone-300'
+                        ? 'bg-[#1e0505] text-stone-300'
                         : briefcase.effect === '+10' || briefcase.effect === 'x2'
-                        ? 'bg-emerald-950/80 border-emerald-400 text-emerald-300'
+                        ? 'bg-yellow-300 text-black font-black'
                         : briefcase.effect === 'zero' || briefcase.effect === '-10'
-                        ? 'bg-rose-950/80 border-rose-600 text-rose-300'
-                        : 'bg-amber-950/80 border-amber-400 text-amber-300'
+                        ? 'bg-rose-700 text-white'
+                        : 'bg-blue-600 text-white'
                     }`}
                   >
-                    <span className="text-[10px] font-bold uppercase tracking-wider block opacity-80">
+                    <span className="font-['Press_Start_2P',monospace] text-[8px] uppercase block mb-1">
                       {team.hasSoldBriefcase
-                        ? 'Bên trong rương đã bán là:'
-                        : 'Hiệu ứng kích hoạt:'}
+                        ? 'TRONG RƯƠNG ĐÃ BÁN LÀ:'
+                        : 'HIỆU ỨNG KÍCH HOẠT:'}
                     </span>
-                    <span className="text-xl sm:text-2xl font-black font-['Cinzel',serif] block mt-1">
+                    <span className="font-['Press_Start_2P',monospace] text-xs sm:text-sm block">
                       {briefcase.label}
                     </span>
-                    <span className="text-xs block mt-1 opacity-90">
+                    <span className="font-['VT323',monospace] text-sm block mt-1">
                       {briefcase.description}
                     </span>
                     {team.effectApplied && (
-                      <span className="inline-block mt-2 text-[11px] font-extrabold px-2.5 py-0.5 rounded bg-black/50 text-amber-300">
+                      <span className="inline-block mt-1 font-['Press_Start_2P',monospace] text-[8px] px-2 py-0.5 bg-black text-yellow-300 border border-white">
                         {team.effectApplied}
                       </span>
                     )}
                   </div>
                 ) : (
-                  <div className="p-5 rounded-2xl bg-black/40 border border-dashed border-amber-500/30 text-center flex flex-col items-center justify-center">
-                    <span className="text-xs sm:text-sm font-bold text-amber-200/80">
+                  <div className="p-4 bg-black/60 border-2 border-dashed border-white/50 text-center flex flex-col items-center justify-center">
+                    <span className="font-['Press_Start_2P',monospace] text-[9px] text-white">
                       {team.hasSoldBriefcase
-                        ? 'Đội đã bán rương cho BTC'
-                        : 'Rương đang được niêm phong'}
+                        ? 'ĐỘI ĐÃ BÁN CHO BTC'
+                        : 'RƯƠNG ĐANG KHÓA KÍN'}
                     </span>
-                    <span className="text-[11px] text-amber-200/50 mt-1">
-                      Bấm nút bên dưới để giải phong ấn
+                    <span className="font-['VT323',monospace] text-base text-yellow-200 mt-1">
+                      Bấm nút bên dưới để mở
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="mt-4">
+              <div className="mt-3">
                 {!isOpened ? (
                   <button
+                    type="button"
                     onClick={() => handleOpenBriefcase(team)}
-                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-stone-950 font-black text-xs sm:text-sm shadow-lg transition transform hover:scale-102 cursor-pointer font-['Cinzel',serif]"
+                    className="w-full py-2.5 font-['Press_Start_2P',monospace] text-xs pixel-btn-blue font-bold cursor-pointer"
                   >
-                    MỞ RƯƠNG SỐ {briefcase.id}
+                    MỞ RƯƠNG #{briefcase.id}
                   </button>
                 ) : (
-                  <div className="w-full py-2 rounded-xl bg-black/40 text-stone-400 font-bold text-xs text-center border border-stone-700 flex items-center justify-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> Đã hoàn tất mở rương
+                  <div className="w-full py-2 bg-black border border-white text-yellow-300 font-['Press_Start_2P',monospace] text-[9px] text-center flex items-center justify-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> ĐÃ MỞ
                   </div>
                 )}
               </div>
@@ -184,34 +185,35 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
 
       {/* Unpicked Leftovers */}
       {isAllTeamBriefcasesOpened && (
-        <div className="w-full max-w-4xl p-5 rounded-3xl bg-black/40 border border-amber-500/20 mb-6 text-center animate-fadeIn">
-          <h4 className="text-xs font-['Cinzel',serif] font-bold uppercase tracking-wider text-amber-300/80 mb-2">
-            Kho niêm phong: {leftoverBriefcases.length} rương không ai chọn
+        <div className="w-full max-w-4xl p-4 pixel-box mb-6 text-center">
+          <h4 className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300 uppercase mb-2 drop-shadow-[1px_1px_0px_#000]">
+            KHO NIÊM PHONG: {leftoverBriefcases.length} RƯƠNG CÒN LẠI
           </h4>
           {!revealedLeftovers ? (
             <button
+              type="button"
               onClick={() => {
                 sound.playCorrect();
                 setRevealedLeftovers(true);
               }}
-              className="px-4 py-2 rounded-xl bg-black/50 hover:bg-black/70 text-amber-300 font-bold text-xs border border-amber-500/30 transition cursor-pointer font-['Cinzel',serif]"
+              className="px-4 py-2 font-['Press_Start_2P',monospace] text-[9px] pixel-btn-blue cursor-pointer"
             >
-              Xem nội dung các rương còn lại
+              XEM NỘI DUNG CÁC RƯƠNG TRONG KHO
             </button>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 animate-fadeIn mt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-2">
               {leftoverBriefcases.map((b) => (
                 <div
                   key={b.id}
-                  className="p-2.5 rounded-xl bg-black/60 border border-amber-500/20 text-center"
+                  className="p-2.5 bg-black border-2 border-white text-center"
                 >
-                  <span className="text-[11px] text-amber-200/60 font-bold block font-['Cinzel',serif]">
-                    RƯƠNG SỐ {b.id}
+                  <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 block">
+                    RƯƠNG #{b.id}
                   </span>
-                  <span className="text-xs font-black text-amber-300 block font-['Cinzel',serif]">
+                  <span className="font-['Press_Start_2P',monospace] text-[10px] text-white block mt-1">
                     {b.label}
                   </span>
-                  <span className="text-[10px] text-stone-400 block mt-0.5">
+                  <span className="font-['VT323',monospace] text-sm text-stone-300 block">
                     {b.description}
                   </span>
                 </div>
@@ -225,30 +227,31 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
       {isAllTeamBriefcasesOpened && (
         <div className="text-center animate-bounce">
           <button
+            type="button"
             onClick={() => {
               sound.playVictory();
               onFinishReveal();
             }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-base shadow-2xl transition transform hover:scale-105 cursor-pointer font-['Cinzel',serif]"
+            className="inline-flex items-center gap-2 px-8 py-3.5 font-['Press_Start_2P',monospace] text-xs sm:text-sm pixel-tile-gold font-black cursor-pointer shadow-[4px_4px_0px_#000]"
           >
-            <Trophy className="w-5 h-5 fill-slate-950" />
-            CÔNG BỐ KẾT QUẢ CHUNG CUỘC 🏆
+            <Trophy className="w-5 h-5 fill-black" />
+            XEM BẢNG VINH DANH CHUNG CUỘC 🏆
           </button>
         </div>
       )}
 
       {/* SWAP MODAL */}
       {swappingTeam && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn">
-          <div className="w-full max-w-lg bg-[#300505] border-2 border-amber-400 rounded-3xl p-6 text-center shadow-2xl">
-            <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center">
-              <RefreshCw className="w-7 h-7 text-amber-300 animate-spin" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fadeIn">
+          <div className="w-full max-w-lg pixel-box p-6 text-center">
+            <div className="w-12 h-12 mx-auto mb-2 bg-yellow-300 border-2 border-black flex items-center justify-center">
+              <RefreshCw className="w-6 h-6 text-black animate-spin" />
             </div>
-            <h3 className="text-2xl font-black text-amber-300 font-['Cinzel',serif]">
-              RƯƠNG ĐỔI ĐIỂM ĐÃ MỞ!
+            <h3 className="text-base sm:text-xl font-black text-yellow-300 font-['Press_Start_2P',monospace] pixel-text-shadow">
+              RƯƠNG ĐỔI ĐIỂM!
             </h3>
-            <p className="text-xs sm:text-sm text-amber-200/90 mt-2">
-              <span className="font-bold text-white">{swappingTeam.name}</span> (đang có {swappingTeam.score}đ) được quyền đổi toàn bộ điểm với 1 đội bất kỳ!
+            <p className="font-['VT323',monospace] text-lg text-yellow-100 mt-2">
+              <span className="font-bold text-white">{swappingTeam.name}</span> ({swappingTeam.score}đ) được quyền đổi toàn bộ điểm với 1 đội bất kỳ!
             </p>
 
             <div className="mt-4 space-y-2">
@@ -257,16 +260,17 @@ export const RevealScreen: React.FC<RevealScreenProps> = ({
                 .map((target) => (
                   <button
                     key={target.id}
+                    type="button"
                     onClick={() => handleConfirmSwap(target.id)}
-                    className="w-full p-3 rounded-xl bg-black/40 hover:bg-black/70 border border-amber-500/30 hover:border-amber-400 transition flex items-center justify-between text-left cursor-pointer group"
+                    className="w-full p-2.5 bg-black hover:bg-yellow-300 hover:text-black border-2 border-white flex items-center justify-between text-left cursor-pointer transition-colors group"
                   >
                     <span
-                      className={`px-2.5 py-1 rounded-lg text-xs font-bold text-white bg-gradient-to-r ${target.color}`}
+                      className={`px-2 py-0.5 text-[9px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${target.color} border border-black`}
                     >
                       {target.name}
                     </span>
-                    <span className="text-base font-black text-amber-400 font-['Cinzel',serif] group-hover:scale-110 transition">
-                      {target.score}đ
+                    <span className="font-['VT323',monospace] text-xl font-black text-yellow-300 group-hover:text-black">
+                      {target.score} ĐIỂM
                     </span>
                   </button>
                 ))}

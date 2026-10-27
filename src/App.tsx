@@ -220,7 +220,6 @@ export const App: React.FC = () => {
     } catch {}
   };
 
-  // Allow tab jumping if game has started
   const handleNavigatePhase = (targetPhase: GamePhase) => {
     if (teams.length === 0) {
       alert('Vui lòng tạo đội và bấm BẮT ĐẦU trước!');
@@ -230,8 +229,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-radial from-[#520d0d] via-[#360707] to-[#1a0202] text-amber-100 flex flex-col justify-between relative overflow-hidden">
-      {/* Background Dong Son Bronze Drum */}
+    <div className="min-h-screen bg-[#cf3532] text-white flex flex-col justify-between relative overflow-hidden select-none">
       <TrongDongBackground />
 
       {/* Top Navbar */}
@@ -310,14 +308,14 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Bottom Right Slogan matching Figma: "Còn gì đẹp hơn HÒA BÌNH - ĐỘC LẬP" */}
+      {/* Bottom Right Pixel Slogan */}
       <div className="fixed bottom-3 right-6 pointer-events-none text-right z-30 select-none hidden sm:block">
-        <p className="font-['Dancing_Script',cursive] text-amber-200/90 text-xl sm:text-2xl drop-shadow">
+        <span className="font-['VT323',monospace] text-yellow-300 text-xl block leading-tight drop-shadow-[2px_2px_0px_#000]">
           Còn gì đẹp hơn
-        </p>
-        <p className="font-['Cinzel',serif] font-black text-amber-400 text-lg sm:text-2xl tracking-wider drop-shadow-md">
+        </span>
+        <span className="font-['Press_Start_2P',monospace] text-white text-xs block mt-1 tracking-wider pixel-text-shadow">
           HÒA BÌNH - ĐỘC LẬP
-        </p>
+        </span>
       </div>
 
       {/* Modals */}

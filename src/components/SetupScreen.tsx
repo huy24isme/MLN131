@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Play, Settings2, Sparkles } from 'lucide-react';
+import { Users, Play, Settings2 } from 'lucide-react';
 import { Team } from '../types';
 
 interface SetupScreenProps {
@@ -8,10 +8,10 @@ interface SetupScreenProps {
 }
 
 const TEAM_COLOR_PRESETS = [
-  { color: 'from-rose-600 to-red-700', defaultName: 'Tổ 1 (Đỏ)' },
+  { color: 'from-red-600 to-rose-700', defaultName: 'Tổ 1 (Đỏ)' },
   { color: 'from-blue-600 to-sky-700', defaultName: 'Tổ 2 (Xanh Dương)' },
-  { color: 'from-amber-600 to-yellow-700', defaultName: 'Tổ 3 (Vàng)' },
-  { color: 'from-emerald-600 to-teal-700', defaultName: 'Tổ 4 (Xanh Lá)' },
+  { color: 'from-amber-500 to-yellow-600', defaultName: 'Tổ 3 (Vàng)' },
+  { color: 'from-emerald-600 to-green-700', defaultName: 'Tổ 4 (Xanh Lá)' },
   { color: 'from-purple-600 to-violet-700', defaultName: 'Tổ 5 (Tím)' },
 ];
 
@@ -48,62 +48,64 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 sm:py-10 flex flex-col items-center relative z-10">
-      {/* Hero Title matching Figma */}
-      <div className="text-center mb-6 select-none">
-        <h2 className="font-['Cinzel',serif] text-2xl sm:text-4xl font-black text-amber-200 tracking-widest drop-shadow-md">
-          DÒNG CHẢY
-        </h2>
-        <h1 className="font-['Cinzel',serif] text-4xl sm:text-6xl font-black text-amber-400 tracking-widest drop-shadow-lg -mt-1">
-          SỬ VIỆT
+    <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 flex flex-col items-center relative z-10 select-none">
+      {/* Title matching Canva 8-bit text: "CÙNG CHƠI CỜ NÀO" */}
+      <div className="text-center mb-6">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+          <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+          <span className="text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+        </div>
+        <h1 className="font-['Press_Start_2P',monospace] text-2xl sm:text-4xl font-black text-white pixel-text-shadow leading-tight">
+          CÙNG CHƠI CỜ NÀO
         </h1>
-        <p className="text-amber-200/80 text-xs sm:text-sm mt-2 max-w-md mx-auto">
-          Khám phá 8 Rương Sứ Mệnh &bull; Chinh phục 20 Thử Thách &bull; Đấu giá kịch tính
+        <p className="font-['VT323',monospace] text-lg sm:text-xl text-yellow-300 mt-2">
+          GAME SHOW LỚP HỌC &bull; 8 RƯƠNG SỨ MỆNH &bull; 20 CÂU HỎI THỬ THÁCH
         </p>
       </div>
 
-      {/* Main Setup Card */}
-      <div className="w-full bg-black/60 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+      {/* Main Setup Box */}
+      <div className="w-full pixel-box p-5 sm:p-6">
         {/* Step 1: Select Team Count */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <label className="text-sm sm:text-base font-bold text-amber-200 flex items-center gap-2 font-['Cinzel',serif]">
-              <Users className="w-5 h-5 text-amber-400" /> 1. Chọn số lượng đội tham gia:
+        <div className="mb-5">
+          <div className="flex items-center justify-between mb-2">
+            <label className="font-['Press_Start_2P',monospace] text-[10px] sm:text-xs text-yellow-300 flex items-center gap-1.5">
+              <Users className="w-4 h-4 text-yellow-300" /> 1. CHỌN SỐ LƯỢNG ĐỘI:
             </label>
-            <span className="text-amber-400 font-extrabold text-lg">{teamCount} Đội</span>
+            <span className="font-['Press_Start_2P',monospace] text-xs text-white">{teamCount} ĐỘI</span>
           </div>
 
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-4 gap-2">
             {[2, 3, 4, 5].map((count) => (
               <button
                 key={count}
                 type="button"
                 onClick={() => setTeamCount(count)}
-                className={`py-3 rounded-2xl font-bold text-sm sm:text-base transition-all duration-200 cursor-pointer font-['Cinzel',serif] ${
+                className={`py-2 font-['Press_Start_2P',monospace] text-[10px] sm:text-xs cursor-pointer transition-transform ${
                   teamCount === count
-                    ? 'bg-amber-400 text-stone-950 shadow-lg shadow-amber-500/30 ring-2 ring-amber-200'
-                    : 'bg-black/40 text-amber-200/70 hover:bg-black/60 hover:text-white border border-amber-500/30'
+                    ? 'pixel-tile-gold font-bold scale-105'
+                    : 'pixel-btn-blue'
                 }`}
               >
-                {count} Đội
+                {count} ĐỘI
               </button>
             ))}
           </div>
         </div>
 
         {/* Step 2: Team Names Input */}
-        <div className="mb-6">
-          <label className="block text-sm sm:text-base font-bold text-amber-200 mb-3 font-['Cinzel',serif]">
-            2. Đặt tên các đội / tổ:
+        <div className="mb-5">
+          <label className="block font-['Press_Start_2P',monospace] text-[10px] sm:text-xs text-yellow-300 mb-2">
+            2. ĐẶT TÊN CÁC ĐỘI / TỔ:
           </label>
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {Array.from({ length: teamCount }).map((_, index) => (
               <div
                 key={index}
-                className="flex items-center gap-3 p-2.5 rounded-2xl bg-black/40 border border-amber-500/20"
+                className="flex items-center gap-2.5 p-2 bg-black border-2 border-white/60 shadow-[2px_2px_0px_#000]"
               >
                 <div
-                  className={`w-8 h-8 rounded-xl bg-gradient-to-br ${TEAM_COLOR_PRESETS[index].color} flex items-center justify-center font-black text-white text-xs shadow`}
+                  className={`w-7 h-7 bg-gradient-to-br ${TEAM_COLOR_PRESETS[index].color} flex items-center justify-center font-['Press_Start_2P',monospace] text-white text-[10px] border border-white`}
                 >
                   {index + 1}
                 </div>
@@ -112,7 +114,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
                   value={teamNames[index] || ''}
                   onChange={(e) => handleTeamNameChange(index, e.target.value)}
                   placeholder={`Tên Đội ${index + 1}...`}
-                  className="flex-1 bg-black/50 border border-amber-500/30 rounded-xl px-4 py-1.5 text-sm sm:text-base text-amber-100 font-semibold focus:outline-none focus:border-amber-400"
+                  className="flex-1 bg-transparent border-none text-base text-yellow-200 font-bold focus:outline-none font-['VT323',monospace]"
                 />
               </div>
             ))}
@@ -120,23 +122,23 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
         </div>
 
         {/* Actions Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-amber-500/20">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t-2 border-black">
           <button
             type="button"
             onClick={onOpenQuestionEditor}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-amber-950/60 text-amber-300 font-bold border border-amber-500/30 transition cursor-pointer text-xs sm:text-sm font-['Cinzel',serif]"
+            className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2.5 pixel-btn-blue font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
           >
-            <Settings2 className="w-4 h-4" />
-            Xem & Chỉnh sửa 20 câu hỏi
+            <Settings2 className="w-3.5 h-3.5" />
+            CHỈNH SỬA 20 CÂU HỎI
           </button>
 
           <button
             type="button"
             onClick={handleStart}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm sm:text-base shadow-xl shadow-amber-500/30 transition-all transform hover:scale-102 cursor-pointer font-['Cinzel',serif]"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 pixel-tile-gold font-['Press_Start_2P',monospace] text-xs font-black cursor-pointer animate-pulse"
           >
-            <Play className="w-4 h-4 fill-slate-950" />
-            BẮT ĐẦU CHỌN RƯƠNG
+            <Play className="w-4 h-4 fill-black" />
+            START GAME (CHỌN RƯƠNG)
           </button>
         </div>
       </div>

@@ -60,43 +60,43 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 flex flex-col items-center relative z-10">
+    <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 flex flex-col items-center relative z-10 select-none">
       {/* Champion Podium */}
-      <div className="w-full text-center mb-8">
-        <div className="relative inline-block my-2">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-3xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-500 p-1 shadow-2xl flex items-center justify-center animate-gold-shine">
-            <Trophy className="w-14 h-14 sm:w-16 sm:h-16 text-stone-950 fill-stone-950" />
-          </div>
+      <div className="w-full text-center mb-6">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="text-3xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+          <span className="text-3xl filter drop-shadow-[2px_2px_0px_#000]">🏆</span>
+          <span className="text-3xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
         </div>
 
-        <h2 className="text-xl sm:text-2xl font-black text-amber-200 font-['Cinzel',serif] tracking-widest mt-2">
-          VINH DANH NHÀ VÔ ĐỊCH
+        <h2 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 uppercase tracking-widest drop-shadow-[1px_1px_0px_#000]">
+          GAME CLEAR!
         </h2>
-        <h1 className="text-3xl sm:text-5xl font-black text-amber-400 font-['Cinzel',serif] tracking-wider mt-1 drop-shadow-md">
-          DÒNG CHẢY SỬ VIỆT 🏆
+        <h1 className="text-2xl sm:text-4xl font-black text-white font-['Press_Start_2P',monospace] pixel-text-shadow mt-1">
+          CHÚC MỪNG NHÀ VÔ ĐỊCH!
         </h1>
 
         {champion && (
           <div className="mt-4 flex flex-col items-center justify-center">
             <span
-              className={`px-8 py-2.5 rounded-2xl text-2xl sm:text-3xl font-black text-white bg-gradient-to-r ${champion.color} shadow-2xl transform hover:scale-105 transition`}
+              className={`px-8 py-3 text-xl sm:text-2xl font-black text-white bg-gradient-to-r ${champion.color} border-4 border-black shadow-[4px_4px_0px_#000] font-['Press_Start_2P',monospace] transform hover:scale-105 transition-transform`}
             >
               {champion.name}
             </span>
-            <span className="text-3xl sm:text-4xl font-black text-amber-300 font-['Cinzel',serif] mt-2 drop-shadow">
+            <span className="text-3xl sm:text-5xl font-black text-yellow-300 font-['VT323',monospace] mt-2 drop-shadow-[3px_3px_0px_#000]">
               {champion.score} ĐIỂM
             </span>
           </div>
         )}
       </div>
 
-      {/* Rankings */}
-      <div className="w-full bg-black/60 border border-amber-500/40 rounded-3xl p-6 shadow-2xl backdrop-blur-md mb-8">
-        <h3 className="text-base sm:text-lg font-black text-amber-200 font-['Cinzel',serif] mb-4 flex items-center gap-2">
-          <Award className="w-5 h-5 text-amber-400" /> BẢNG TỔNG KẾT THỨ HẠNG
+      {/* Leaderboard */}
+      <div className="w-full pixel-box p-5 sm:p-6 mb-6">
+        <h3 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 mb-3 flex items-center gap-2 drop-shadow-[1px_1px_0px_#000]">
+          <Award className="w-4 h-4 text-yellow-300" /> BẢNG XẾP HẠNG TẤT CẢ CÁC ĐỘI
         </h3>
 
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {rankedTeams.map((team, rank) => {
             const briefcase = briefcases.find(
               (b) => b.id === team.initialBriefcaseId
@@ -105,36 +105,36 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
             return (
               <div
                 key={team.id}
-                className={`p-3.5 rounded-2xl border flex flex-col sm:flex-row items-center justify-between gap-3 transition ${
+                className={`p-3 border-2 border-black flex flex-col sm:flex-row items-center justify-between gap-2 shadow-[2px_2px_0px_#000] ${
                   rank === 0
-                    ? 'bg-amber-950/60 border-amber-400 shadow-lg'
+                    ? 'bg-yellow-300 text-black font-bold'
                     : rank === 1
-                    ? 'bg-black/50 border-amber-500/50'
-                    : 'bg-black/30 border-amber-500/20'
+                    ? 'bg-[#1e0505] text-white'
+                    : 'bg-[#5e1210] text-white'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-black/80 flex items-center justify-center font-black text-base border border-amber-500/30">
+                  <div className="w-8 h-8 bg-black text-white flex items-center justify-center font-['Press_Start_2P',monospace] text-xs border border-white">
                     {rank === 0 ? '🥇' : rank === 1 ? '🥈' : rank === 2 ? '🥉' : `#${rank + 1}`}
                   </div>
                   <div>
                     <span
-                      className={`text-sm sm:text-base font-black px-3 py-0.5 rounded-lg text-white bg-gradient-to-r ${team.color}`}
+                      className={`text-xs font-['Press_Start_2P',monospace] px-2 py-0.5 text-white bg-gradient-to-r ${team.color} border border-black`}
                     >
                       {team.name}
                     </span>
-                    <span className="text-xs text-amber-200/60 block mt-0.5">
+                    <span className={`font-['VT323',monospace] text-base block mt-0.5 ${rank === 0 ? 'text-black' : 'text-yellow-200'}`}>
                       {briefcase
                         ? `Rương #${briefcase.id} (${briefcase.label})`
                         : 'Không có rương'}
-                      {team.hasSoldBriefcase && ' • Đã bán cho BTC'}
+                      {team.hasSoldBriefcase && ' &bull; Đã bán cho BTC'}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="text-2xl sm:text-3xl font-black text-amber-400 font-['Cinzel',serif]">
-                    {team.score}đ
+                  <span className={`text-2xl sm:text-3xl font-black font-['VT323',monospace] ${rank === 0 ? 'text-black' : 'text-yellow-300'}`}>
+                    {team.score} ĐIỂM
                   </span>
                 </div>
               </div>
@@ -146,10 +146,11 @@ export const VictoryScreen: React.FC<VictoryScreenProps> = ({
       {/* Restart */}
       <div>
         <button
+          type="button"
           onClick={onPlayAgain}
-          className="flex items-center gap-2 px-8 py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-sm sm:text-base shadow-xl transition transform hover:scale-105 cursor-pointer font-['Cinzel',serif]"
+          className="flex items-center gap-2 px-8 py-3.5 pixel-tile-gold font-['Press_Start_2P',monospace] text-xs sm:text-sm font-black cursor-pointer shadow-[4px_4px_0px_#000]"
         >
-          <RotateCcw className="w-4 h-4 stroke-[2.5]" />
+          <RotateCcw className="w-4 h-4" />
           CHƠI VÁN MỚI
         </button>
       </div>

@@ -1,61 +1,142 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --pixel-red: #cf3532;
+    --pixel-dark-red: #9e1f1c;
+    --pixel-blue: #2563eb;
+    --pixel-blue-dark: #1d4ed8;
+    --pixel-blue-light: #60a5fa;
+    --pixel-yellow: #facc15;
+    --pixel-green: #16a34a;
+    --pixel-green-dark: #15803d;
+  }
+
   body {
-    background: radial-gradient(circle at center, #540e0e 0%, #360707 50%, #1c0303 100%);
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #fef08a;
+    background-color: var(--pixel-red);
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #ffffff;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px #facc15, 0 0 0 5px #000000;
   }
 }
 
-/* Golden metallic button styling matching Figma */
-.gold-tile {
-  background: linear-gradient(135deg, #fef08a 0%, #facc15 25%, #ca8a04 70%, #a16207 100%);
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.5),
-    inset 0 2px 2px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 3px rgba(113, 63, 18, 0.7);
-  border: 2px solid #fef08a;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+/* 8-Bit Pixel Utility Typography */
+.font-pixel {
+  font-family: 'Press Start 2P', 'Be Vietnam Pro', monospace;
 }
 
-.gold-tile:hover {
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 
-    0 10px 20px -2px rgba(234, 179, 8, 0.4),
-    inset 0 2px 4px rgba(255, 255, 255, 0.8),
-    inset 0 -2px 3px rgba(113, 63, 18, 0.8);
+.font-pixel-mono {
+  font-family: 'VT323', 'Be Vietnam Pro', monospace;
+  font-size: 1.25rem;
 }
 
-.gold-tile:active {
-  transform: scale(0.97);
+/* 8-Bit Box / Window Container */
+.pixel-box {
+  background: #991f1c;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
 }
 
-/* Animations */
-@keyframes spin-very-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pixel-box-dark {
+  background: #1e0505;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
 }
 
-.animate-spin-very-slow {
-  animation: spin-very-slow 120s linear infinite;
+/* 8-Bit Blue Arcade Button matching Canva [MENU], [SIGN IN] */
+.pixel-btn-blue {
+  background: #2563eb;
+  border: 3px solid #000000;
+  box-shadow: inset -3px -3px 0px #1d4ed8, inset 3px 3px 0px #60a5fa, 3px 3px 0px #000000;
+  color: #ffffff;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-@keyframes gold-shine {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.8));
-  }
+.pixel-btn-blue:hover:not(:disabled) {
+  background: #3b82f6;
+  transform: translate(-1px, -1px);
+  box-shadow: inset -3px -3px 0px #1d4ed8, inset 3px 3px 0px #93c5fd, 4px 4px 0px #000000;
 }
 
-.animate-gold-shine {
-  animation: gold-shine 3s ease-in-out infinite;
+.pixel-btn-blue:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: inset -2px -2px 0px #1d4ed8, inset 2px 2px 0px #60a5fa, 1px 1px 0px #000000;
+}
+
+/* 8-Bit Green Arcade Button */
+.pixel-btn-green {
+  background: #16a34a;
+  border: 3px solid #000000;
+  box-shadow: inset -3px -3px 0px #15803d, inset 3px 3px 0px #4ade80, 3px 3px 0px #000000;
+  color: #ffffff;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pixel-btn-green:hover:not(:disabled) {
+  background: #22c55e;
+  transform: translate(-1px, -1px);
+  box-shadow: inset -3px -3px 0px #15803d, inset 3px 3px 0px #86efac, 4px 4px 0px #000000;
+}
+
+.pixel-btn-green:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: inset -2px -2px 0px #15803d, inset 2px 2px 0px #4ade80, 1px 1px 0px #000000;
+}
+
+/* 8-Bit Yellow Golden Tile matching 20 Questions */
+.pixel-tile-gold {
+  background: #facc15;
+  border: 3px solid #000000;
+  box-shadow: inset -3px -3px 0px #ca8a04, inset 3px 3px 0px #fef08a, 3px 3px 0px #000000;
+  color: #000000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pixel-tile-gold:hover:not(:disabled) {
+  background: #fde047;
+  transform: translate(-1px, -1px);
+  box-shadow: inset -3px -3px 0px #ca8a04, inset 3px 3px 0px #ffffff, 4px 4px 0px #000000;
+}
+
+.pixel-tile-gold:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: inset -2px -2px 0px #ca8a04, inset 2px 2px 0px #fef08a, 1px 1px 0px #000000;
+}
+
+/* 8-Bit Red Button */
+.pixel-btn-red {
+  background: #dc2626;
+  border: 3px solid #000000;
+  box-shadow: inset -3px -3px 0px #991b1b, inset 3px 3px 0px #f87171, 3px 3px 0px #000000;
+  color: #ffffff;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pixel-btn-red:hover:not(:disabled) {
+  background: #ef4444;
+  transform: translate(-1px, -1px);
+  box-shadow: inset -3px -3px 0px #991b1b, inset 3px 3px 0px #fca5a5, 4px 4px 0px #000000;
+}
+
+.pixel-btn-red:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: inset -2px -2px 0px #991b1b, inset 2px 2px 0px #f87171, 1px 1px 0px #000000;
+}
+
+/* Pixel text drop shadow matching "CÙNG CHƠI CỜ NÀO" */
+.pixel-text-shadow {
+  text-shadow: 3px 3px 0px #000000;
+}
+
+.pixel-text-shadow-sm {
+  text-shadow: 2px 2px 0px #000000;
 }
 
 /* Custom scrollbars */
@@ -64,9 +145,9 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(30, 5, 5, 0.8);
+  background: #8b1e1c;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(234, 179, 8, 0.5);
-  border-radius: 3px;
+  background: #facc15;
+  border: 1px solid #000000;
 }

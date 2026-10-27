@@ -32,38 +32,40 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isDealPhase = currentPhase === 'DEAL_OR_NO_DEAL';
 
   return (
-    <header className="sticky top-0 z-40 px-4 py-4 sm:px-8 border-b border-amber-500/20 bg-[#300505]/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-        {/* Left: Brand "DÒNG CHẢY SỬ VIỆT" */}
-        <div className="flex items-center gap-3">
-          <div className="text-left select-none">
-            <h1 className="font-['Cinzel',serif] text-xl sm:text-2xl font-black tracking-wider text-amber-200 drop-shadow-md">
-              DÒNG CHẢY
-            </h1>
-            <h1 className="font-['Cinzel',serif] text-2xl sm:text-3xl font-black tracking-widest text-amber-400 -mt-1 drop-shadow-md">
-              SỬ VIỆT
-            </h1>
+    <header className="sticky top-0 z-40 px-4 py-3 border-b-4 border-black bg-[#cf3532] shadow-md select-none">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        {/* Left: Canva style retro score label */}
+        <div className="flex items-center gap-4">
+          <div className="text-left font-['VT323',monospace] leading-none tracking-widest">
+            <div className="text-xs sm:text-sm text-yellow-300 font-bold uppercase drop-shadow-[1px_1px_0px_#000]">
+              GAME: DÒNG CHẢY SỬ VIỆT
+            </div>
+            <div className="text-lg sm:text-xl text-white font-bold drop-shadow-[2px_2px_0px_#000]">
+              ĐIỂM CAO: 9999
+            </div>
           </div>
         </div>
 
-        {/* Center: Tabs matching Figma: (?) RƯƠNG SỨ MỆNH | THỬ THÁCH | ĐẤU GIÁ */}
-        <div className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-['Cinzel',serif] font-black tracking-widest">
-          {/* (?) Rule button */}
+        {/* Center: Canva [ MENU ] style 8-bit Buttons */}
+        <nav aria-label="Điều hướng vòng thi" className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          {/* Rule button */}
           <button
+            type="button"
             onClick={onOpenRules}
-            title="Xem luật chơi"
-            className="w-8 h-8 rounded-full border-2 border-amber-400/80 bg-amber-500/20 text-amber-300 hover:bg-amber-400 hover:text-slate-950 flex items-center justify-center font-bold text-base transition-all shadow-md cursor-pointer"
+            aria-label="Xem luật chơi"
+            className="px-2.5 py-1 text-xs font-['Press_Start_2P',monospace] pixel-btn-blue font-bold cursor-pointer"
           >
             ?
           </button>
 
           {/* RƯƠNG SỨ MỆNH */}
           <button
+            type="button"
             onClick={() => onNavigatePhase?.('PICK_BRIEFCASES')}
-            className={`transition-all uppercase cursor-pointer ${
+            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
               isChestPhase
-                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
-                : 'text-amber-200/60 hover:text-amber-300'
+                ? 'pixel-tile-gold font-bold scale-105'
+                : 'pixel-btn-blue'
             }`}
           >
             RƯƠNG SỨ MỆNH
@@ -71,58 +73,75 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* THỬ THÁCH */}
           <button
+            type="button"
             onClick={() => onNavigatePhase?.('QUIZ_BOARD')}
-            className={`transition-all uppercase cursor-pointer ${
+            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
               isQuizPhase
-                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
-                : 'text-amber-200/60 hover:text-amber-300'
+                ? 'pixel-tile-gold font-bold scale-105'
+                : 'pixel-btn-blue'
             }`}
           >
-            THỬ THÁCH
+            20 CÂU HỎI
           </button>
 
           {/* ĐẤU GIÁ */}
           <button
+            type="button"
             onClick={() => onNavigatePhase?.('DEAL_OR_NO_DEAL')}
-            className={`transition-all uppercase cursor-pointer ${
+            className={`px-3 py-1.5 text-xs font-['Press_Start_2P',monospace] cursor-pointer transition-transform ${
               isDealPhase
-                ? 'text-amber-300 border-b-2 border-amber-400 pb-1 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]'
-                : 'text-amber-200/60 hover:text-amber-300'
+                ? 'pixel-tile-gold font-bold scale-105'
+                : 'pixel-btn-blue'
             }`}
           >
             ĐẤU GIÁ
           </button>
-        </div>
+        </nav>
 
-        {/* Right: Controls (Audio, Fullscreen, Reset) */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onToggleMute}
-            title={isMuted ? 'Bật âm thanh' : 'Tắt âm thanh'}
-            className="p-2 rounded-xl bg-black/40 hover:bg-amber-950/60 text-amber-300 border border-amber-500/30 transition cursor-pointer"
-          >
-            {isMuted ? (
-              <VolumeX className="w-4 h-4 text-rose-400" />
-            ) : (
-              <Volume2 className="w-4 h-4 text-amber-400" />
-            )}
-          </button>
+        {/* Right: Golden Diamonds (from Canva) + Controls */}
+        <div className="flex items-center gap-3">
+          {/* 3 Golden Diamonds matching Canva */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+            <span className="text-xl sm:text-2xl filter drop-shadow-[2px_2px_0px_#000]">💎</span>
+          </div>
 
-          <button
-            onClick={toggleFullScreen}
-            title="Toàn màn hình máy chiếu"
-            className="p-2 rounded-xl bg-black/40 hover:bg-amber-950/60 text-amber-300 border border-amber-500/30 transition cursor-pointer"
-          >
-            <Maximize2 className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={onToggleMute}
+              aria-label={isMuted ? 'Bật âm thanh' : 'Tắt âm thanh'}
+              title={isMuted ? 'Bật âm thanh' : 'Tắt âm thanh'}
+              className="p-1.5 pixel-btn-blue cursor-pointer"
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-rose-300" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-yellow-300" />
+              )}
+            </button>
 
-          <button
-            onClick={onResetGame}
-            title="Chơi lại từ đầu"
-            className="p-2 rounded-xl bg-black/40 hover:bg-rose-950/60 text-rose-400 border border-rose-500/30 transition cursor-pointer"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
+            <button
+              type="button"
+              onClick={toggleFullScreen}
+              aria-label="Toàn màn hình"
+              title="Toàn màn hình"
+              className="p-1.5 pixel-btn-blue cursor-pointer"
+            >
+              <Maximize2 className="w-4 h-4" />
+            </button>
+
+            <button
+              type="button"
+              onClick={onResetGame}
+              aria-label="Làm mới trận đấu"
+              title="Làm mới trận đấu"
+              className="p-1.5 pixel-btn-red cursor-pointer"
+            >
+              <RotateCcw className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </header>

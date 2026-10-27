@@ -22,116 +22,98 @@ export const ChestCard: React.FC<ChestCardProps> = ({
     : null;
 
   return (
-    <div
+    <button
+      type="button"
       onClick={isSelectable ? onSelect : undefined}
-      className={`relative group flex flex-col items-center select-none transition-all duration-300 ${
+      disabled={!isSelectable && !assignedTeam}
+      aria-label={`Rương số ${briefcase.id}${assignedTeam ? ` của ${assignedTeam.name}` : ''}`}
+      className={`relative group flex flex-col items-center select-none transition-transform duration-100 p-2 cursor-pointer ${
         isSelectable
-          ? 'cursor-pointer transform hover:-translate-y-2 hover:scale-105'
-          : ''
+          ? 'hover:-translate-y-1 hover:scale-105 active:translate-y-1'
+          : assignedTeam
+          ? 'cursor-default'
+          : 'opacity-70 cursor-not-allowed'
       }`}
     >
-      {/* Wooden Chest Graphic matching Figma Image 1 */}
-      <div className="relative w-36 sm:w-44 h-28 sm:h-32 flex flex-col items-center justify-end">
+      {/* 8-Bit Pixel Art Chest SVG */}
+      <div className="relative w-32 sm:w-40 h-28 sm:h-32 flex flex-col items-center justify-end">
         <svg
-          viewBox="0 0 160 120"
-          className={`w-full h-full drop-shadow-2xl transition-all duration-300 ${
-            assignedTeam ? 'filter drop-shadow-[0_0_12px_rgba(234,179,8,0.7)]' : ''
-          }`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 64 64"
+          className="w-full h-full image-rendering-pixelated filter drop-shadow-[3px_3px_0px_#000]"
+          shapeRendering="crispEdges"
         >
-          {/* Shadow underneath */}
-          <ellipse cx="80" cy="115" rx="65" ry="5" fill="black" fillOpacity="0.4" />
+          {/* Base Shadow */}
+          <rect x="6" y="58" width="52" height="4" fill="#000000" fillOpacity="0.4" />
 
-          {/* Chest Body (Gỗ nâu vân gỗ) */}
-          <rect x="20" y="46" width="120" height="66" rx="4" fill="#8B4513" stroke="#5C2E0B" strokeWidth="2" />
+          {/* Chest Outer Black Border */}
+          <rect x="8" y="20" width="48" height="38" fill="#000000" />
+          <rect x="12" y="16" width="40" height="4" fill="#000000" />
+
+          {/* Lid Top Arc */}
+          <rect x="14" y="18" width="36" height="4" fill="#d97706" />
+
+          {/* Chest Body Wood (Brown) */}
+          <rect x="10" y="22" width="44" height="34" fill="#b45309" />
           
-          {/* Wood Planks Lines */}
-          <line x1="20" y1="68" x2="140" y2="68" stroke="#5C2E0B" strokeWidth="2.5" />
-          <line x1="20" y1="90" x2="140" y2="90" stroke="#5C2E0B" strokeWidth="2.5" />
+          {/* Wood Planks Details */}
+          <rect x="10" y="32" width="44" height="2" fill="#78350f" />
+          <rect x="10" y="44" width="44" height="2" fill="#78350f" />
 
-          {/* Left & Right Gold Trim Bands */}
-          <rect x="30" y="46" width="14" height="66" fill="#FBBF24" stroke="#B45309" strokeWidth="1.5" />
-          <rect x="116" y="46" width="14" height="66" fill="#FBBF24" stroke="#B45309" strokeWidth="1.5" />
+          {/* Left & Right Gold Bands */}
+          <rect x="14" y="20" width="6" height="36" fill="#facc15" />
+          <rect x="44" y="20" width="6" height="36" fill="#facc15" />
 
-          {/* Chest Lid (Nắp rương cong vòm) */}
-          <path
-            d="M16 46 C16 18, 144 18, 144 46 Z"
-            fill="#A0522D"
-            stroke="#5C2E0B"
-            strokeWidth="2.5"
-          />
+          {/* Lid Highlight */}
+          <rect x="16" y="20" width="32" height="4" fill="#f59e0b" />
 
-          {/* Lid Gold Trim Bands */}
-          <path
-            d="M30 46 C30 25, 44 25, 44 46 Z"
-            fill="#FBBF24"
-            stroke="#B45309"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M116 46 C116 25, 130 25, 130 46 Z"
-            fill="#FBBF24"
-            stroke="#B45309"
-            strokeWidth="1.5"
-          />
-
-          {/* Center Golden Lock Plate / Shield (Mặt ổ khóa màu vàng) */}
-          <path
-            d="M70 38 L90 38 L90 58 L80 66 L70 58 Z"
-            fill="#F59E0B"
-            stroke="#92400E"
-            strokeWidth="2"
-          />
+          {/* Golden Center Lock (Pixel Lock Plate) */}
+          <rect x="28" y="28" width="8" height="12" fill="#facc15" />
+          <rect x="26" y="30" width="12" height="8" fill="#facc15" />
           {/* Keyhole */}
-          <circle cx="80" cy="48" r="3" fill="#451A03" />
-          <polygon points="78,48 82,48 81,56 79,56" fill="#451A03" />
+          <rect x="30" y="32" width="4" height="4" fill="#000000" />
+          <rect x="31" y="36" width="2" height="3" fill="#000000" />
 
-          {/* Corner Studs / Rivets (Đinh tán vàng) */}
-          <circle cx="37" cy="54" r="2" fill="#FEF3C7" />
-          <circle cx="37" cy="80" r="2" fill="#FEF3C7" />
-          <circle cx="37" cy="102" r="2" fill="#FEF3C7" />
-          <circle cx="123" cy="54" r="2" fill="#FEF3C7" />
-          <circle cx="123" cy="80" r="2" fill="#FEF3C7" />
-          <circle cx="123" cy="102" r="2" fill="#FEF3C7" />
+          {/* Corner Pixel Rivets */}
+          <rect x="16" y="24" width="2" height="2" fill="#ffffff" />
+          <rect x="46" y="24" width="2" height="2" fill="#ffffff" />
+          <rect x="16" y="50" width="2" height="2" fill="#ffffff" />
+          <rect x="46" y="50" width="2" height="2" fill="#ffffff" />
         </svg>
 
-        {/* Revealed Effect Overlay (if opened) */}
+        {/* Revealed Effect Overlay */}
         {showContent && briefcase.isOpened && (
-          <div className="absolute inset-x-2 bottom-3 z-10 bg-black/90 rounded-xl border border-amber-400 p-2 text-center animate-fadeIn">
-            <span className="text-[10px] text-amber-400 font-bold block">
+          <div className="absolute inset-0 z-10 bg-black/95 border-2 border-yellow-300 p-2 flex flex-col items-center justify-center text-center">
+            <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 block leading-tight">
               {briefcase.label}
             </span>
           </div>
         )}
       </div>
 
-      {/* Parchment Ribbon Banner (RƯƠNG SỐ X) matching Figma */}
-      <div className="relative -mt-1 sm:-mt-2 z-10">
+      {/* 8-Bit Parchment Banner [ RƯƠNG 0X ] */}
+      <div className="relative -mt-1 z-10">
         <div
-          className={`px-4 sm:px-5 py-1 rounded-sm border shadow-lg transition-all ${
+          className={`px-3 py-1 font-['Press_Start_2P',monospace] text-[10px] tracking-wider uppercase border-2 border-black ${
             assignedTeam
-              ? 'bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 border-amber-600 text-amber-950 ring-2 ring-amber-400'
-              : 'bg-[#fffae6] border-[#b45309] text-[#78350f]'
+              ? 'bg-yellow-300 text-black shadow-[2px_2px_0px_#000]'
+              : 'bg-white text-black shadow-[2px_2px_0px_#000]'
           }`}
         >
-          <span className="font-['Cinzel',serif] font-black text-xs sm:text-sm tracking-wider uppercase block text-center">
-            RƯƠNG SỐ {briefcase.id}
-          </span>
+          RƯƠNG {briefcase.id < 10 ? `0${briefcase.id}` : briefcase.id}
         </div>
 
         {/* Team Ownership Badge */}
         {assignedTeam && (
           <div className="text-center mt-1">
             <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-white bg-gradient-to-r ${assignedTeam.color} shadow-md`}
+              className={`inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${assignedTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
             >
-              <Check className="w-3 h-3 stroke-[3]" />
+              <Check className="w-2.5 h-2.5 stroke-[3]" />
               {assignedTeam.name}
             </span>
           </div>
         )}
       </div>
-    </div>
+    </button>
   );
 };

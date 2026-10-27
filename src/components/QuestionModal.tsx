@@ -34,6 +34,20 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
   }, [isOpen, question]);
 
   useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        setIsRunning((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
     let timer: ReturnType<typeof setInterval> | null = null;
     if (isRunning && timeLeft > 0) {
       timer = setInterval(() => {
@@ -77,65 +91,65 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
   const formattedNum = question.id < 10 ? `0${question.id}` : `${question.id}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fadeIn"
+      role="dialog"
+      aria-modal="true"
+    >
       <div
-        className={`relative w-full max-w-3xl bg-[#360707] rounded-3xl shadow-2xl p-6 sm:p-8 text-amber-100 border-2 overflow-hidden ${
-          isJackpot
-            ? 'border-amber-400 shadow-amber-500/40 animate-gold-shine'
-            : 'border-amber-500/50 shadow-black'
-        }`}
+        className="relative w-full max-w-3xl bg-[#1e0505] border-4 border-black p-5 sm:p-6 text-white shadow-[8px_8px_0px_#000]"
       >
         {/* Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-5 pb-3 border-b border-amber-500/20">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b-2 border-black">
+          <div className="flex items-center gap-2">
             <span
-              className={`px-3 py-1 rounded-xl font-black text-xs sm:text-sm text-white bg-gradient-to-r ${activeTeam.color} shadow`}
+              className={`px-2.5 py-1 text-[10px] font-['Press_Start_2P',monospace] text-white bg-gradient-to-r ${activeTeam.color} border border-black shadow-[1px_1px_0px_#000]`}
             >
-              Lượt thi: {activeTeam.name}
+              LƯỢT: {activeTeam.name}
             </span>
-            <span className="text-amber-200/80 font-['Cinzel',serif] font-bold text-sm">
-              CÂU HỎI SỐ {formattedNum} / 20
+            <span className="font-['Press_Start_2P',monospace] text-xs text-yellow-300">
+              CÂU {formattedNum} / 20
             </span>
           </div>
 
           <div
-            className={`px-3 py-1 rounded-xl font-['Cinzel',serif] font-black text-sm sm:text-base flex items-center gap-1.5 ${
+            className={`px-3 py-1 font-['Press_Start_2P',monospace] text-xs flex items-center gap-1.5 border-2 border-black ${
               isJackpot
-                ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-stone-950 shadow-lg shadow-amber-500/40 animate-bounce'
-                : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                ? 'bg-yellow-300 text-black shadow-[2px_2px_0px_#000] animate-bounce'
+                : 'bg-blue-600 text-white shadow-[2px_2px_0px_#000]'
             }`}
           >
-            {isJackpot && <Sparkles className="w-4 h-4 fill-stone-950" />}
-            <span>{question.points} ĐIỂM</span>
-            {isJackpot && <span className="text-xs uppercase">(Jackpot)</span>}
+            {isJackpot && <Sparkles className="w-3.5 h-3.5 fill-black" />}
+            <span>+{question.points} ĐIỂM</span>
+            {isJackpot && <span className="text-[9px] uppercase">(JACKPOT)</span>}
           </div>
         </div>
 
-        {/* Center: Question Text */}
-        <div className="min-h-[130px] flex items-center justify-center text-center p-4 sm:p-6 rounded-2xl bg-black/40 border border-amber-500/20 mb-5">
-          <h3 className="text-lg sm:text-2xl font-extrabold text-white leading-relaxed">
+        {/* Center: Question Text (Retro RPG dialogue box) */}
+        <div className="min-h-[120px] flex items-center justify-center text-center p-4 bg-black border-2 border-white/60 mb-4 shadow-inner">
+          <h3 className="text-base sm:text-xl md:text-2xl font-bold text-white leading-relaxed font-['Be_Vietnam_Pro',sans-serif]">
             {question.question}
           </h3>
         </div>
 
         {/* 10s Timer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-black/40 border border-amber-500/20 mb-5">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 bg-[#330808] border-2 border-black mb-4 shadow-[2px_2px_0px_#000]">
+          <div className="flex items-center gap-3">
             <div
-              className={`w-14 h-14 rounded-full flex items-center justify-center font-black text-2xl transition shadow ${
+              className={`w-12 h-12 flex items-center justify-center font-['Press_Start_2P',monospace] text-lg border-2 border-black shadow-[2px_2px_0px_#000] ${
                 timeLeft <= 3
-                  ? 'bg-rose-600 text-white animate-danger-glow'
-                  : "bg-amber-400 text-stone-950 font-['Cinzel',serif]"
+                  ? 'bg-rose-600 text-white animate-pulse'
+                  : 'bg-yellow-300 text-black'
               }`}
             >
-              {timeLeft}s
+              {timeLeft}
             </div>
             <div>
-              <span className="text-xs font-bold text-amber-200/70 uppercase tracking-wider block font-['Cinzel',serif]">
-                Thời Gian Suy Nghĩ
+              <span className="font-['Press_Start_2P',monospace] text-[9px] text-yellow-300 uppercase block">
+                THỜI GIAN TRẢ LỜI
               </span>
-              <span className="text-sm font-semibold text-amber-300">
-                {isRunning ? 'Đang đếm...' : timeLeft === 0 ? 'Hết giờ!' : 'Sẵn sàng'}
+              <span className="font-['VT323',monospace] text-base text-yellow-200">
+                {isRunning ? 'Đang đếm ngược...' : timeLeft === 0 ? 'Hết giờ!' : 'Sẵn sàng'}
               </span>
             </div>
           </div>
@@ -143,70 +157,78 @@ export const QuestionModal: React.FC<QuestionModalProps> = ({
           <div className="flex items-center gap-2">
             {!isRunning ? (
               <button
+                type="button"
                 onClick={handleStartTimer}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm cursor-pointer font-['Cinzel',serif]"
+                className="flex items-center gap-1.5 px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-green cursor-pointer"
               >
-                <Play className="w-4 h-4 fill-white" /> Bắt đầu 10s
+                <Play className="w-3 h-3 fill-white" /> BẮT ĐẦU (10S)
               </button>
             ) : (
               <button
+                type="button"
                 onClick={handlePauseTimer}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs sm:text-sm cursor-pointer font-['Cinzel',serif]"
+                className="flex items-center gap-1.5 px-3 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-tile-gold cursor-pointer"
               >
-                <Pause className="w-4 h-4 fill-white" /> Tạm dừng
+                <Pause className="w-3 h-3 fill-black" /> TẠM DỪNG
               </button>
             )}
 
             <button
+              type="button"
               onClick={handleResetTimer}
-              title="Đặt lại 10 giây"
-              className="p-2 rounded-xl bg-black/40 hover:bg-black/60 text-amber-200 border border-amber-500/30 cursor-pointer"
+              aria-label="Đặt lại thời gian"
+              title="Đặt lại thời gian"
+              className="p-2 pixel-btn-blue cursor-pointer"
             >
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
         {/* Answer Toggle Section */}
-        <div className="mb-5">
+        <div className="mb-4">
           <button
+            type="button"
             onClick={() => setShowAnswer(!showAnswer)}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-300/80 hover:text-amber-300 transition cursor-pointer"
+            className="inline-flex items-center gap-1.5 font-['VT323',monospace] text-base text-yellow-300 hover:text-white transition-colors cursor-pointer"
           >
             {showAnswer ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-            {showAnswer ? 'Ẩn đáp án' : 'Xem đáp án (Dành cho Quản trò / MC)'}
+            {showAnswer ? 'ẨN ĐÁP ÁN' : 'XEM ĐÁP ÁN (DÀNH CHO QUẢN TRÒ / MC)'}
           </button>
 
           {showAnswer && (
-            <div className="mt-2 p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 text-sm font-bold animate-fadeIn">
-              🎯 Đáp án: <span className="text-white ml-1">{question.answer}</span>
+            <div className="mt-2 p-2.5 bg-black border-2 border-emerald-400 text-emerald-300 font-['VT323',monospace] text-lg animate-fadeIn">
+              🎯 ĐÁP ÁN: <span className="text-white font-bold ml-1">{question.answer}</span>
             </div>
           )}
         </div>
 
         {/* Host Judgement Buttons */}
-        <div className="pt-4 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
+        <div className="pt-3 border-t-2 border-black flex flex-wrap items-center justify-between gap-3">
           <button
+            type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-black/40 hover:bg-black/60 text-amber-200/80 text-xs sm:text-sm font-semibold transition cursor-pointer border border-amber-500/30 font-['Cinzel',serif]"
+            className="px-3 py-2 font-['Press_Start_2P',monospace] text-[9px] pixel-btn-blue cursor-pointer"
           >
-            Đóng / Bỏ qua
+            ĐÓNG
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={() => onAnswer(false)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rose-700 hover:bg-rose-600 text-white text-xs sm:text-sm font-bold shadow transition transform hover:scale-102 cursor-pointer font-['Cinzel',serif]"
+              className="flex items-center gap-1.5 px-4 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-red font-bold cursor-pointer"
             >
-              <X className="w-4 h-4 stroke-[3]" />
+              <X className="w-3.5 h-3.5 stroke-[3]" />
               TRẢ LỜI SAI (0đ)
             </button>
 
             <button
+              type="button"
               onClick={() => onAnswer(true)}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 text-xs sm:text-sm font-black shadow-lg transition transform hover:scale-102 cursor-pointer font-['Cinzel',serif]"
+              className="flex items-center gap-1.5 px-5 py-2 font-['Press_Start_2P',monospace] text-[10px] pixel-btn-green font-bold cursor-pointer"
             >
-              <Check className="w-4 h-4 stroke-[3]" />
+              <Check className="w-3.5 h-3.5 stroke-[3]" />
               TRẢ LỜI ĐÚNG (+{question.points}đ)
             </button>
           </div>

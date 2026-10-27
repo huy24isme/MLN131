@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Save, RotateCcw, AlertTriangle } from 'lucide-react';
+import { X, Save, RotateCcw } from 'lucide-react';
 import { Question } from '../types';
 import { INITIAL_QUESTIONS } from '../data/defaultQuestions';
 
@@ -38,47 +38,49 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-slate-900 border-2 border-amber-500/40 rounded-2xl shadow-2xl p-6 text-slate-100 flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fadeIn select-none">
+      <div className="relative w-full max-w-4xl bg-[#1e0505] border-4 border-black p-5 sm:p-6 text-white flex flex-col max-h-[90vh] shadow-[8px_8px_0px_#000]">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-700/80">
+        <div className="flex items-center justify-between pb-3 border-b-2 border-black">
           <div>
-            <h2 className="text-xl sm:text-2xl font-black text-amber-400 flex items-center gap-2">
-              ✏️ CHỈNH SỬA BỘ 20 CÂU HỎI
+            <h2 className="text-xs sm:text-sm font-['Press_Start_2P',monospace] text-yellow-300 pixel-text-shadow">
+              CHỈNH SỬA BỘ 20 CÂU HỎI
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="font-['VT323',monospace] text-base text-yellow-200 mt-1">
               Bạn có thể tự nhập câu hỏi, đáp án và điểm số của môn học lớp bạn
             </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 cursor-pointer"
+            aria-label="Đóng"
+            className="p-1.5 pixel-btn-red text-xs cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Scrollable Questions List */}
-        <div className="flex-1 overflow-y-auto py-4 space-y-4 pr-1">
+        <div className="flex-1 overflow-y-auto py-3 space-y-3 pr-1">
           {localQuestions.map((q) => (
             <div
               key={q.id}
-              className={`p-4 rounded-xl border ${
+              className={`p-3 border-2 border-black ${
                 q.points === 10
-                  ? 'bg-amber-950/30 border-amber-500/60'
-                  : 'bg-slate-800/60 border-slate-700'
+                  ? 'bg-yellow-300/20 border-yellow-300'
+                  : 'bg-black/60'
               }`}
             >
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="font-extrabold text-amber-400 text-base">
-                  Câu {q.id} {q.points === 10 && '🔥 [JACKPOT 10 ĐIỂM]'}
+                <span className="font-['Press_Start_2P',monospace] text-[10px] text-yellow-300">
+                  CÂU {q.id} {q.points === 10 && '🔥 [JACKPOT 10 ĐIỂM]'}
                 </span>
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-slate-400">Điểm số:</label>
+                  <label className="font-['Press_Start_2P',monospace] text-[9px] text-stone-300">Điểm:</label>
                   <select
                     value={q.points}
                     onChange={(e) => handleUpdate(q.id, 'points', Number(e.target.value))}
-                    className="bg-slate-900 border border-slate-600 rounded px-2 py-1 text-xs text-amber-300 font-bold focus:outline-none focus:border-amber-400"
+                    className="bg-black border border-white text-yellow-300 font-bold px-2 py-0.5 text-xs focus:outline-none"
                   >
                     <option value={1}>1 điểm</option>
                     <option value={2}>2 điểm</option>
@@ -93,28 +95,28 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
               {/* Question Text */}
               <div className="space-y-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 mb-1">
+                  <label className="block font-['Press_Start_2P',monospace] text-[8px] text-stone-300 mb-1">
                     Nội dung câu hỏi:
                   </label>
                   <textarea
                     rows={2}
                     value={q.question}
                     onChange={(e) => handleUpdate(q.id, 'question', e.target.value)}
-                    className="w-full bg-slate-900/90 border border-slate-700 rounded-lg p-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500/80 resize-none"
+                    className="w-full bg-black border border-stone-600 p-2 text-xs text-white focus:outline-none focus:border-yellow-300 resize-none font-['Be_Vietnam_Pro',sans-serif]"
                     placeholder="Nhập nội dung câu hỏi..."
                   />
                 </div>
 
                 {/* Answer Text */}
                 <div>
-                  <label className="block text-xs font-semibold text-emerald-400 mb-1">
+                  <label className="block font-['Press_Start_2P',monospace] text-[8px] text-emerald-400 mb-1">
                     Đáp án đúng (chỉ MC nhìn thấy để đối chiếu):
                   </label>
                   <input
                     type="text"
                     value={q.answer}
                     onChange={(e) => handleUpdate(q.id, 'answer', e.target.value)}
-                    className="w-full bg-slate-900/90 border border-slate-700 rounded-lg p-2 text-sm text-emerald-300 focus:outline-none focus:border-emerald-500/80"
+                    className="w-full bg-black border border-stone-600 p-1.5 text-xs text-emerald-300 focus:outline-none focus:border-emerald-400 font-['Be_Vietnam_Pro',sans-serif]"
                     placeholder="Nhập đáp án đúng..."
                   />
                 </div>
@@ -124,28 +126,31 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="pt-4 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3">
+        <div className="pt-3 border-t-2 border-black flex flex-wrap items-center justify-between gap-2">
           <button
+            type="button"
             onClick={handleResetDefaults}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 pixel-btn-blue font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
           >
-            <RotateCcw className="w-4 h-4 text-amber-400" />
-            Khôi phục mặc định
+            <RotateCcw className="w-3.5 h-3.5" />
+            KHÔI PHỤC MẶC ĐỊNH
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer"
+              className="px-4 py-1.5 pixel-btn-red font-['Press_Start_2P',monospace] text-[9px] cursor-pointer"
             >
-              Hủy
+              HỦY
             </button>
             <button
+              type="button"
               onClick={handleSaveAndClose}
-              className="flex items-center gap-2 px-6 py-2 text-xs sm:text-sm font-bold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 cursor-pointer"
+              className="flex items-center gap-1.5 px-5 py-1.5 pixel-tile-gold font-['Press_Start_2P',monospace] text-[9px] font-black cursor-pointer"
             >
-              <Save className="w-4 h-4" />
-              Lưu & Áp dụng
+              <Save className="w-3.5 h-3.5" />
+              LƯU & ÁP DỤNG
             </button>
           </div>
         </div>
