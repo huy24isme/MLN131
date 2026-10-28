@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KỊCH BẢN TỔ CHỨC GAME SHOW: RETRO PIXEL GAME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #991b1b;
+      --primary-dark: #6e1010;
+      --accent-gold: #b45309;
+      --gold-light: #fef3c7;
+      --arcade-dark: #111827;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --border-color: #d1d5db;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      background-color: #ffffff;
+      line-height: 1.5;
+      font-size: 13.5px;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 14mm 14mm 16mm 14mm;
+      @bottom-right {
+        content: "Trang " counter(page);
+        font-size: 11px;
+        color: #6b7280;
+        font-family: 'Be Vietnam Pro', sans-serif;
+      }
+    }
+
+    .page {
+      page-break-after: always;
+      position: relative;
+      min-height: 260mm;
+      padding-bottom: 10mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    /* Pixel Badge & Heading Styles */
+    .pixel-title {
+      font-family: 'VT323', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 60%, #b91c1c 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 8px;
+      border: 3px solid #111827;
+      box-shadow: 4px 4px 0px #111827;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .header-banner h1 {
+      font-family: 'VT323', monospace;
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      color: #fef08a;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .header-banner .subtitle {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .meta-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: #f9fafb;
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+
+    .meta-item {
+      text-align: center;
+    }
+
+    .meta-item .label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .meta-item .value {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 2px;
+    }
+
+    h2.section-header {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    h3.subsection-header {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 12.5px;
+      background: white;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid #d1d5db;
+      padding: 7px 10px;
+      vertical-align: middle;
+    }
+
+    table.data-table th {
+      background-color: #f3f4f6;
+      color: #111827;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.5px;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+
+    /* Callout & Dialogues */
+    .mc-quote {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 10px 0;
+      font-style: italic;
+      color: #1e3a8a;
+      font-size: 13px;
+    }
+
+    .mc-quote strong {
+      font-style: normal;
+      color: #1d4ed8;
+      display: block;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      font-size: 11.5px;
+    }
+
+    .warning-box {
+      background: #fef2f2;
+      border: 1.5px solid #f87171;
+      border-left: 4px solid #dc2626;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 10px 0;
+      font-size: 12.5px;
+      color: #991b1b;
+    }
+
+    .gold-box {
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      border-left: 4px solid #b45309;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 12px 0;
+      color: #92400e;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-green { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .badge-blue { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .badge-yellow { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
+    .badge-red { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+
+    /* Number circle */
+    .step-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 12px;
+    }
+
+    .timeline-time {
+      width: 85px;
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 12.5px;
+      flex-shrink: 0;
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding-left: 12px;
+      border-left: 2px solid #e5e7eb;
+    }
+
+    /* Print Specifics */
+    @media print {
+      body {
+        font-size: 13px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== PAGE 1 ========================================== -->
+  <div class="page">
+    <div class="header-banner">
+      <div style="font-size: 20px; margin-bottom: 4px;">🎮 💎 🏆 💎 🎮</div>
+      <h1>KỊCH BẢN ĐIỀU PHỐI GAME SHOW</h1>
+      <div class="subtitle">RETRO PIXEL GAME &bull; CHIẾC CẶP NGUYỆN VỌNG &bull; MÔN HỌC MLN131</div>
+    </div>
+
+    <div class="meta-box">
+      <div class="meta-item">
+        <div class="label">Hình thức</div>
+        <div class="value">Quiz Show Lớp Học</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Quy mô</div>
+        <div class="value">2 - 5 Đội / Tổ</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Thời lượng</div>
+        <div class="value">35 - 45 Phút</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Nền tảng chạy</div>
+        <div class="value">Web App (Vite/React)</div>
+      </div>
+    </div>
+
+    <h2 class="section-header">1. MỤC ĐÍCH & Ý NGHĨA TRÒ CHƠI</h2>
+    <p>
+      <strong>Retro Pixel Game</strong> là trò chơi tương tác ứng dụng công nghệ trực quan và lý thuyết trò chơi (Game Theory), được thiết kế dành riêng cho các tiết học sinh hoạt chuyên đề, thuyết trình nhóm môn <strong>MLN131 (Triết học Mác - Lênin / Lịch sử Đảng / Khoa học Xã hội)</strong>.
+    </p>
+    <ul style="margin-left: 20px; margin-bottom: 12px; space-y: 4px;">
+      <li><strong>Ôn tập kiến thức tự nhiên & lôi cuốn:</strong> Thay thế việc đọc câu hỏi nhàm chán bằng hệ thống 20 ô số vàng kim 8-bit sống động có đồng hồ đếm ngược 10 giây và âm thanh kịch tính.</li>
+      <li><strong>Tạo điểm nhấn kịch tính đỉnh cao:</strong> Cơ chế "Đấu giá rương bí mật" (Deal or No Deal) đặt người chơi vào thế giằng xé tâm lý giữa <em>lựa chọn an toàn (nhận điểm tươi)</em> và <em>lòng dũng cảm mạo hiểm (giữ rương để lật ngược thế cờ)</em>.</li>
+      <li><strong>Gắn kết tinh thần đồng đội:</strong> Các thành viên trong tổ phải thảo luận chốt phương án cực nhanh trong 10 giây sinh tử.</li>
+    </ul>
+
+    <h2 class="section-header">2. BỐ TRÍ NHÂN SỰ & THIẾT BỊ LỚP HỌC</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Vị trí</th>
+          <th style="width: 30%;">Phụ trách</th>
+          <th>Nhiệm vụ trọng tâm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>MC Chính (Dẫn chương trình)</strong></td>
+          <td>1 sinh viên năng nổ, giọng to rõ</td>
+          <td>Nêu luật, đọc câu hỏi, điều tiết nhịp độ lớp học, thực hiện các đòn tâm lý ép giá ở vòng Đấu giá rương.</td>
+        </tr>
+        <tr>
+          <td><strong>Kỹ thuật viên (Host Web App)</strong></td>
+          <td>1 sinh viên ngồi máy tính</td>
+          <td>Kết nối máy chiếu, thao tác bấm chọn ô, kích hoạt đồng hồ 10s, bật/tắt tiếng, bấm điểm đúng/sai trên giao diện.</td>
+        </tr>
+        <tr>
+          <td><strong>Trợ lý MC & Thư ký</strong></td>
+          <td>1 sinh viên hỗ trợ</td>
+          <td>Quan sát đội nào giơ tay/phát tín hiệu chuông trước, ghi chú thứ tự điểm số, hỗ trợ trao quà/phần thưởng.</td>
+        </tr>
+        <tr>
+          <td><strong>Thiết bị chuẩn bị</strong></td>
+          <td>Cả nhóm thuyết trình</td>
+          <td>1 Laptop nối Máy chiếu (Full HD), 1 Loa âm thanh (để phát tiếng retro arcade tích hợp sẵn trên web), 1 Micro cho MC.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-header">3. BỐ CỤC 4 GIAI ĐOẠN CỦA TRÒ CHƠI</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+      <div style="background: #fdf2f8; border: 1.5px solid #fbcfe8; padding: 10px; border-radius: 6px;">
+        <strong style="color: #9d174d;">GIAI ĐOẠN 1: CHỌN RƯƠNG (STAGE 1)</strong>
+        <p style="font-size: 12px; margin-top: 4px; color: #4b5563;">
+          Mỗi đội chọn 1 trong 8 Rương Sứ Mệnh mang về vị trí. Rương được niêm phong giữ bí mật tuyệt đối suốt vòng thi trắc nghiệm.
+        </p>
+      </div>
+      <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; padding: 10px; border-radius: 6px;">
+        <strong style="color: #1e40af;">GIAI ĐOẠN 2: 20 CÂU THỬ THÁCH (STAGE 2)</strong>
+        <p style="font-size: 12px; margin-top: 4px; color: #4b5563;">
+          20 ô số vàng kim từ 01 - 20 (điểm từ 1đ - 5đ và 1 câu Jackpot 10đ). Xoay vòng lượt thi, mỗi câu 10 giây trả lời tích lũy quỹ điểm.
+        </p>
+      </div>
+      <div style="background: #fefce8; border: 1.5px solid #fef08a; padding: 10px; border-radius: 6px;">
+        <strong style="color: #854d0e;">GIAI ĐOẠN 3: ĐẤU GIÁ RƯƠNG (STAGE 3)</strong>
+        <p style="font-size: 12px; margin-top: 4px; color: #4b5563;">
+          Đội thấp điểm đàm phán trước. BTC ra giá mua rương (1 - 8 điểm). Đội có 10 giây quyết định: <strong>BÁN</strong> hay <strong>GIỮ</strong>.
+        </p>
+      </div>
+      <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; padding: 10px; border-radius: 6px;">
+        <strong style="color: #166534;">GIAI ĐOẠN 4: GIẢI PHONG ẤN & TRAO GIẢI (STAGE 4)</strong>
+        <p style="font-size: 12px; margin-top: 4px; color: #4b5563;">
+          Mở từng rương giải mã hiệu ứng: +10, x2, Đổi điểm, /2, -5, -10, Về 0, +0. Xác định đội vô địch & bắn pháo hoa vinh danh.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== PAGE 2 ========================================== -->
+  <div class="page">
+    <h2 class="section-header">4. TIMELINE CHI TIẾT & TIẾN TRÌNH ĐIỀU PHỐI (35 - 45 PHÚT)</h2>
+    
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 00 - 05</div>
+      <div class="timeline-content">
+        <strong>Khởi động, Ổn định & Thiết lập đội chơi (Setup Screen)</strong>
+        <p>MC chào lớp, giới thiệu chủ đề môn học. Bật giao diện web trên máy chiếu, chọn số đội tham gia (thường là 4 hoặc 5 tổ), nhập tên đại diện các tổ. Nhắc nhở luật chơi ngắn gọn và thử âm thanh buzzer/chuông.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 05 - 10</div>
+      <div class="timeline-content">
+        <strong>Vòng 1: Chọn Rương Sứ Mệnh (Pick Briefcases)</strong>
+        <p>Giao diện hiện 8 chiếc Rương bí mật phong cách 8-bit. Lần lượt từng tổ cử đại diện chọn 1 rương. MC tạo không khí hồi hộp: <em>"Chiếc rương này sẽ đi theo các bạn đến tận phút cuối cùng. Trong đó có thể là cứu tinh đưa các bạn lên đỉnh vinh quang, hoặc là quả bom nổ chậm!"</em></p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 10 - 27</div>
+      <div class="timeline-content">
+        <strong>Vòng 2: Vượt chướng ngại vật - 20 Câu hỏi Thử thách (Quiz Board)</strong>
+        <p>Màn hình mở ra 2 hàng gồm 20 ô vàng kim (01 - 20). Các tổ lần lượt được chọn ô khi đến lượt. MC ấn mở câu hỏi, bấm nút <strong>BẮT ĐẦU (10S)</strong>. Đồng hồ đếm ngược vang lên. Hết 10s, đội đưa ra câu trả lời. MC ấn "XEM ĐÁP ÁN" để đối chiếu và bấm "TRẢ LỜI ĐÚNG (+điểm)" hoặc "TRẢ LỜI SAI (0đ)". Điểm tự động nhảy lên bảng điểm trực tiếp.</p>
+        <div class="warning-box">
+          <strong>Lưu ý quan trọng cho MC:</strong> Trong 20 câu có đúng 1 câu <strong>JACKPOT 10 ĐIỂM (Câu số 20)</strong>. Khi đội nào vô tình mở trúng câu này, hiệu ứng lấp lánh sẽ kích hoạt, MC cần khuấy động cả lớp reo hò để đẩy cao trào!
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 27 - 37</div>
+      <div class="timeline-content">
+        <strong>Vòng 3: Đấu giá & Thương lượng Rương (Deal or No Deal) - CAO TRÀO TÂM LÝ</strong>
+        <p>Sau 20 câu hỏi, ấn nút "VÀO ĐẤU GIÁ". Hệ thống tự động xếp đội có số điểm thấp nhất lên đàm phán trước. MC bắt đầu quá trình ra giá mua rương (áp dụng Ma trận điểm số ở Trang 3). Bấm đồng hồ 10 giây đếm ngược để đội chốt: BÁN (xanh lá) hay GIỮ (xanh dương).</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 37 - 43</div>
+      <div class="timeline-content">
+        <strong>Vòng 4: Mở Rương Sứ Mệnh & Xử lý Hoán đổi điểm (Reveal Stage)</strong>
+        <p>Mở lần lượt rương của các đội. Với đội đã BÁN, MC mở rương để cả lớp xem họ "thoát hiểm ngoạn mục" hay "tiếc đứt ruột". Với đội GIỮ, hiệu ứng được áp dụng ngay lập tức vào điểm số. Nếu có đội trúng rương <strong>ĐỔI ĐIỂM</strong>, màn hình Swap Modal sẽ mở ra cho đội đó chọn cướp điểm của đội nào!</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time">Phút 43 - 45</div>
+      <div class="timeline-content">
+        <strong>Vinh danh Nhà Vô Địch & Tổng kết (Victory Stage)</strong>
+        <p>Màn hình Victory tự động bắn pháo hoa confetti rực rỡ, phát nhạc chiến thắng 8-bit và hiển thị bảng xếp hạng huy chương Vàng/Bạc/Đồng. MC trao quà và đại diện nhóm đúc kết thông điệp bài học.</p>
+      </div>
+    </div>
+
+    <h2 class="section-header">5. BẢN ĐỒ HIỆU ỨNG 8 CHIẾC RƯƠNG SỨ MỆNH</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Hiệu ứng</th>
+          <th style="width: 20%;">Tên nhãn</th>
+          <th style="width: 15%;">Xác suất</th>
+          <th>Tác động thực tế lên điểm số của đội</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-green">+10</span></td>
+          <td><strong>+10 Điểm</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Cộng ngay 10 điểm tươi vào quỹ điểm (tương đương 1 câu Jackpot).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">x2</span></td>
+          <td><strong>Nhân Đôi (x2)</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Nhân đôi toàn bộ số điểm đang có. Đội càng nhiều điểm càng trở nên bất khả chiến bại!</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-purple">SWAP</span></td>
+          <td><strong>Đổi Điểm</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td><strong>Vũ khí hủy diệt:</strong> Được quyền tráo đổi toàn bộ điểm với 1 đội bất kỳ trong lớp.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-yellow">/2</span></td>
+          <td><strong>Chia Đôi (/2)</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Bị trừ 50% tổng số điểm tích lũy được (làm tròn lên).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">-5</span></td>
+          <td><strong>-5 Điểm</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Bị trừ trực tiếp 5 điểm (điểm số không bị âm dưới 0).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">-10</span></td>
+          <td><strong>-10 Điểm</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Cú sốc lớn: Trừ thẳng cánh 10 điểm của đội.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">VỀ 0</span></td>
+          <td><strong>Mất Trắng</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Xóa sạch toàn bộ điểm số về con số 0 tròn trĩnh!</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-yellow">+0</span></td>
+          <td><strong>Không Có Gì</strong></td>
+          <td>1/8 (12.5%)</td>
+          <td>Giữ nguyên điểm số, không thưởng cũng không phạt.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========================================== PAGE 3 ========================================== -->
+  <div class="page">
+    <div style="background: #78350f; color: white; padding: 12px 18px; border-radius: 6px; margin-bottom: 14px;">
+      <h2 style="color: #fef08a; font-size: 18px; margin: 0; font-family: 'VT323', monospace; letter-spacing: 1px;">
+        ★ CHUYÊN ĐỀ ĐẶC BIỆT: NGHỆ THUẬT ĐẤU GIÁ & TÂM LÝ HỌC HÀNH VI
+      </h2>
+      <p style="font-size: 12px; margin: 4px 0 0 0; color: #fef3c7;">
+        Nguyên tắc cốt lõi: <strong>"Mức giá mua của BTC phải khiến người chơi THÈM BÁN (an toàn), nhưng viễn cảnh giữ rương lại CỰC KỲ HẤP DẪN (lật kèo / nhân đôi)"</strong>.
+      </p>
+    </div>
+
+    <h2 class="section-header" style="margin-top: 10px;">6. MA TRẬN MỨC ĐIỂM ĐỀ XUẤT CHO TỪNG VỊ THẾ CỦA ĐỘI</h2>
+    <p>
+      Hệ thống Web App cho phép MC nhanh chóng chọn mức giá từ <strong>+1 đến +8 điểm</strong>. Dưới đây là bảng số điểm định sẵn chuẩn xác nhất theo tâm lý học:
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 18%;">Vị thế của Đội</th>
+          <th style="width: 14%;">Điểm hiện tại</th>
+          <th style="width: 18%;">Mức giá BTC chào mua</th>
+          <th style="width: 25%;">Tâm lý khiến họ THÈM BÁN</th>
+          <th>Cám dỗ khiến họ MUỐN GIỮ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Đội Chót Bảng<br>(Hạng 4 - 5)</strong></td>
+          <td><strong>1 - 5 Điểm</strong><br><span class="badge badge-red">Nguy cấp</span></td>
+          <td><strong style="color: #b45309; font-size: 14px;">+4 đến +6 Điểm</strong><br><em>(Khuyên dùng: 5đ)</em></td>
+          <td>
+            <strong>Gấp đôi tài sản:</strong> Điểm bán cao hơn cả số điểm họ nhọc công kiếm cả buổi! Bán là cầm chắc 7 - 11 điểm, thoát nhục đội sổ.
+          </td>
+          <td>
+            <strong>Cú lật kèo Swap:</strong> Trong rương có thể là "ĐỔI ĐIỂM". Giữ rương có cơ hội cướp lấy 18-20 điểm của đội đầu bảng! Bán thì mất cơ hội vô địch.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Đội Nhóm Giữa<br>(Hạng 2 - 3)</strong></td>
+          <td><strong>6 - 11 Điểm</strong><br><span class="badge badge-yellow">Tiềm năng</span></td>
+          <td><strong style="color: #b45309; font-size: 14px;">+5 đến +7 Điểm</strong><br><em>(Khuyên dùng: 6đ)</em></td>
+          <td>
+            <strong>Bảo hiểm an toàn:</strong> Cầm thêm 6-7 điểm là nhảy vọt lên 13 - 18 điểm, bám sát hoặc vượt mặt đội top 1 mà không sợ rủi ro bị -10 hay Về 0.
+          </td>
+          <td>
+            <strong>Cơn mưa x2 & +10:</strong> Nếu mở ra x2, họ sẽ vọt lên 16 - 22 điểm (ngôi vương trong tầm tay). Bán 6đ thì chỉ là "về nhì an toàn".
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Đội Dẫn Đầu<br>(Hạng 1)</strong></td>
+          <td><strong>12 - 20+ Điểm</strong><br><span class="badge badge-green">Thống trị</span></td>
+          <td><strong style="color: #b45309; font-size: 14px;">+3 đến +5 Điểm</strong><br><em>(Khuyên dùng: 4đ)</em></td>
+          <td>
+            <strong>Nỗi sợ mất trắng (Loss Aversion):</strong> Đang đứng đầu nên sợ nhất là bị chia đôi (/2) hoặc Về 0. Bán là khóa chặt chiến thắng, không gì cản nổi!
+          </td>
+          <td>
+            <strong>Kỷ lục huyền thoại:</strong> Mở trúng x2 là lập kỷ lục 30 - 40 điểm vô tiền khoáng hậu, đi vào lịch sử lớp học!
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-header">7. BẢNG MỨC ĐIỂM ĐỀ NGHỊ CHI TIẾT THEO TỪNG RƯƠNG (HẬU TRƯỜNG BTC)</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 14%;">Nội dung rương</th>
+          <th style="width: 16%;">Giá mua BTC đề xuất</th>
+          <th style="width: 35%;">Đòn tâm lý MC tung ra để mồi chài bán</th>
+          <th>Sự thật tàn nhẫn / vinh quang khi GIỮ RƯƠNG</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>+10 Điểm</strong></td>
+          <td><span class="badge badge-yellow">+6 hoặc +7 Điểm</span></td>
+          <td><em>"BTC trả các bạn 7 điểm tươi! 7 điểm là gần bằng cả câu Jackpot rồi, cầm chắc trong tay tội gì mạo hiểm?"</em></td>
+          <td><strong>Siêu hời nếu GIỮ:</strong> Trong rương có tới +10 điểm, giữ rương sẽ lời hơn bán 3 - 4 điểm!</td>
+        </tr>
+        <tr>
+          <td><strong>Nhân Đôi (x2)</strong></td>
+          <td><span class="badge badge-yellow">+7 hoặc +8 Điểm</span></td>
+          <td><em>"Mức giá kỷ lục 8 điểm! Điểm cao nhất trần nhà của BTC. Bán đi để chắc chắn có giải mang về!"</em></td>
+          <td><strong>Bùng nổ nếu GIỮ:</strong> Nếu đội đang có 12đ, nhân đôi sẽ thành 24đ (lời hơn bán hẳn 12 điểm!).</td>
+        </tr>
+        <tr>
+          <td><strong>Đổi Điểm (Swap)</strong></td>
+          <td><span class="badge badge-yellow">+5 hoặc +6 Điểm</span></td>
+          <td><em>"5 điểm là một con số quá đẹp. Đừng mơ mộng hão huyền về phép màu, thực tế đi các bạn!"</em></td>
+          <td><strong>Lật kèo ngoạn mục:</strong> Đội chót bảng giữ rương sẽ cướp trắng vị trí Quán quân của đội top 1!</td>
+        </tr>
+        <tr>
+          <td><strong>Chia Đôi (/2)</strong></td>
+          <td><span class="badge badge-red">+4 hoặc +5 Điểm</span></td>
+          <td><em>"Điểm số của các bạn đang lung lay. 5 điểm này là chiếc phao cứu sinh cuối cùng!"</em></td>
+          <td><strong>Cái bẫy ngọt ngào:</strong> Bán thì được +5đ; nếu cố chấp giữ sẽ bị bốc hơi 50% tổng điểm!</td>
+        </tr>
+        <tr>
+          <td><strong>-5 Điểm / -10 Điểm</strong></td>
+          <td><span class="badge badge-red">+4 hoặc +5 Điểm</span></td>
+          <td><em>"Các bạn có linh cảm rương này lành hay dữ? Một quyết định sai lầm là mất hết tất cả!"</em></td>
+          <td><strong>Cứu mạng nếu BÁN:</strong> Bán là được điểm dương, nếu giữ rương là nhận đòn chí mạng âm điểm.</td>
+        </tr>
+        <tr>
+          <td><strong>Về 0 Điểm</strong></td>
+          <td><span class="badge badge-red">+5 hoặc +6 Điểm</span></td>
+          <td><em>"Bảo toàn danh dự đi các bạn! Cầm 6 điểm về chỗ hay muốn trắng tay ra về trong nước mắt?"</em></td>
+          <td><strong>Phép màu thoát hiểm:</strong> Bán rương là quyết định sáng suốt nhất cuộc đời họ!</td>
+        </tr>
+        <tr>
+          <td><strong>+0 Điểm</strong></td>
+          <td><span class="badge badge-blue">+3 hoặc +4 Điểm</span></td>
+          <td><em>"Một lời đề nghị khiêm tốn 3 điểm, nhẹ nhàng nhưng chắc chắn!"</em></td>
+          <td><strong>Bán thì hời:</strong> Trong rương rỗng tuếch, bán được 3-4 điểm là hời to!</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========================================== PAGE 4 ========================================== -->
+  <div class="page">
+    <h2 class="section-header">8. KỊCH BẢN LỜI THOẠI MC CHI TIẾT (MC SCRIPT & CHEATSHEET)</h2>
+
+    <h3 class="subsection-header">A. LỜI THOẠI MỞ MÀN (KHI BẮT ĐẦU GAME SHOW)</h3>
+    <div class="mc-quote">
+      <strong>MC lên sân khấu (nhạc nền hào hùng):</strong>
+      "Nhiệt liệt chào mừng thầy cô và toàn thể các bạn sinh viên lớp chúng ta đã đến với đấu trường trí tuệ và bản lĩnh: <strong>RETRO PIXEL GAME</strong> - Game show đồng hành cùng môn học MLN131! Hôm nay, không chỉ có những câu hỏi kiểm tra kiến thức, mà 8 chiếc Rương Sứ Mệnh mang phong cách 8-bit phía sau lưng tôi sẽ là nơi định đoạt số phận của các tổ. Có rương sẽ đưa các bạn lên đỉnh vinh quang, nhưng cũng có rương đẩy bạn về con số không tròn trĩnh! Các đội đã sẵn sàng chưa? Hãy cùng bước vào Stage 1: CHỌN RƯƠNG!"
+    </div>
+
+    <h3 class="subsection-header">B. LỜI THOẠI KHI MỞ TRÚNG CÂU HỎI JACKPOT 10 ĐIỂM (CÂU SỐ 20)</h3>
+    <div class="mc-quote">
+      <strong>MC phản ứng kịch tính khi màn hình lóe sáng:</strong>
+      "Ôi trời ơi cả lớp ơi! Hãy nhìn lên màn hình máy chiếu! Ô số 20 vừa được chọn chính là <strong>JACKPOT 10 ĐIỂM DUY NHẤT CỦA TOÀN BỘ GAME SHOW</strong>! Đây là câu hỏi có thể thay đổi hoàn toàn cục diện bảng điểm! 10 giây suy nghĩ cho tổ... BẮT ĐẦU!"
+    </div>
+
+    <h3 class="subsection-header">C. LỜI THOẠI THAO TÚNG TÂM LÝ TẠI VÒNG ĐẤU GIÁ (STAGE 3 - DEAL OR NO DEAL)</h3>
+    <p><em>Đây là phần quan trọng nhất đòi hỏi MC diễn xuất giọng điệu chậm rãi, ma mị, tạo áp lực thời gian:</em></p>
+    
+    <div class="mc-quote">
+      <strong>MC tiếp cận Đội đàm phán (Ví dụ: Tổ 3 đang có 8 điểm):</strong>
+      "Xin mời Tổ 3! Hiện tại các bạn đang có 8 điểm. Các bạn đang ôm trên tay chiếc Rương số 4 suốt từ đầu giờ đến giờ. Các bạn có cảm thấy chiếc rương này đang ấm lên hay đang lạnh toát đi không?
+      <br><br>
+      Ban Tổ Chức chúng tôi là những nhà đầu tư hào phóng nhưng cũng đầy toan tính. Chúng tôi không muốn các bạn phải chịu rủi ro bốc phải chiếc rương <em>Về 0 Điểm</em> hay <em>Trừ 10 Điểm</em>. Vì vậy, BTC chính thức đưa ra mức giá mua đứt chiếc rương này với giá: <strong>+6 ĐIỂM TƯƠI!</strong>
+      <br><br>
+      Hãy lắng nghe thật kỹ: Nếu bấm <strong>BÁN</strong>, các bạn sẽ có ngay 8 + 6 = <strong>14 điểm</strong>, vươn lên vị trí an toàn tuyệt đối. Còn nếu bấm <strong>GIỮ</strong>, các bạn có thể nhân đôi số điểm lên 16 điểm, nhưng cũng có thể rơi thẳng xuống vực thẳm 0 điểm!
+      <br><br>
+      <strong>10 GIÂY ĐẾM NGƯỢC QUYẾT ĐỊNH CHO TỔ 3... BẮT ĐẦU!</strong> (MC đếm: 10, 9, 8... Chốt nhanh kẻo hết giờ!)"
+    </div>
+
+    <div class="mc-quote">
+      <strong>Khi đội chọn BÁN RƯƠNG:</strong>
+      "Một quyết định vô cùng thực dụng và tỉnh táo! Chúc mừng các bạn đã bỏ túi ngay +6 điểm an toàn từ BTC! Rương của bạn đã bị khóa niêm phong!"
+    </div>
+
+    <div class="mc-quote">
+      <strong>Khi đội chọn GIỮ RƯƠNG:</strong>
+      "Quá dũng cảm! Một tràng pháo tay cho tinh thần thép của Tổ 3! Họ từ chối 6 điểm an toàn để quyết tử với số phận! Liệu chiếc rương này là kho báu hay là hố tử thần? Chúng ta sẽ biết ngay ở vòng mở rương!"
+    </div>
+
+    <h3 class="subsection-header">D. LỜI THOẠI KHI KÍCH HOẠT HIỆU ỨNG RƯƠNG "ĐỔI ĐIỂM" (SWAP)</h3>
+    <div class="mc-quote">
+      <strong>MC khuấy động khi mở ra rương ĐỔI ĐIỂM:</strong>
+      "BÙNG NỔ! Chiếc rương chứa đựng điều kinh khủng nhất game show: <strong>QUYỀN NĂNG ĐỔI ĐIỂM</strong>! 
+      Tổ 4 hiện chỉ có 5 điểm, nhưng các bạn có quyền chỉ mặt đặt tên 1 đội bất kỳ trong lớp để TRÁO ĐỔI TOÀN BỘ ĐIỂM SỐ!
+      Tổ 1 đang có 19 điểm dẫn đầu lớp... Các bạn có muốn cướp lấy 19 điểm đó và đẩy Tổ 1 xuống đáy bảng xếp hạng không? 
+      Hãy đưa ra sự lựa chọn của các bạn trên màn hình ngay bây giờ!"
+    </div>
+
+    <h3 class="subsection-header">E. LỜI THOẠI BẾ MẠC & TRAO THƯỞNG</h3>
+    <div class="mc-quote">
+      <strong>MC tổng kết trận đấu:</strong>
+      "Trải qua những giây phút căng não nghẹt thở, chủ nhân của chiếc cúp vinh quang ngày hôm nay đã chính thức lộ diện: <strong>CHÚC MỪNG TỔ... ĐÃ TRỞ THÀNH QUÁN QUÂN RETRO PIXEL GAME!</strong> 
+      Trò chơi khép lại nhưng tinh thần học tập nhiệt huyết và tình đoàn kết của lớp chúng ta sẽ còn mãi. Xin cảm ơn sự tham gia của tất cả các bạn!"
+    </div>
+  </div>
+
+  <!-- ========================================== PAGE 5 ========================================== -->
+  <div class="page">
+    <h2 class="section-header">9. BỘ 20 CÂU HỎI & ĐÁP ÁN TRA CỨU NHANH DÀNH CHO MC</h2>
+    <p><em>MC cầm bảng này trên tay để đối chiếu ngay khi thí sinh trả lời mà không cần nhìn vào màn hình máy tính:</em></p>
+
+    <table class="data-table" style="font-size: 11.5px;">
+      <thead>
+        <tr>
+          <th style="width: 6%;">Ô</th>
+          <th style="width: 8%;">Điểm</th>
+          <th style="width: 48%;">Nội dung câu hỏi trắc nghiệm / đố vui</th>
+          <th>Đáp án chuẩn xác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>01</strong></td><td><span class="badge badge-green">1đ</span></td><td>Tác phẩm 'Truyện Kiều' là của đại thi hào nào?</td><td><strong>Nguyễn Du</strong></td></tr>
+        <tr><td><strong>02</strong></td><td><span class="badge badge-green">1đ</span></td><td>Hành tinh nào gần Mặt Trời nhất trong Hệ Mặt Trời?</td><td><strong>Sao Thủy (Mercury)</strong></td></tr>
+        <tr><td><strong>03</strong></td><td><span class="badge badge-green">1đ</span></td><td>Số nguyên tố chẵn duy nhất là số mấy?</td><td><strong>Số 2</strong></td></tr>
+        <tr><td><strong>04</strong></td><td><span class="badge badge-green">1đ</span></td><td>Quốc hoa chính thức của nước CHXHCN Việt Nam là hoa gì?</td><td><strong>Hoa Sen</strong></td></tr>
+        <tr><td><strong>05</strong></td><td><span class="badge badge-blue">2đ</span></td><td>Ai là người chỉ huy chiến dịch Điện Biên Phủ 1954 lừng lẫy năm châu?</td><td><strong>Đại tướng Võ Nguyên Giáp</strong></td></tr>
+        <tr><td><strong>06</strong></td><td><span class="badge badge-blue">2đ</span></td><td>Khí nào chiếm tỉ lệ % thể tích lớn nhất trong khí quyển Trái Đất?</td><td><strong>Khí Nitơ (N2) (~78%)</strong></td></tr>
+        <tr><td><strong>07</strong></td><td><span class="badge badge-blue">2đ</span></td><td>Bức tranh nàng Mona Lisa nổi tiếng là kiệt tác của danh họa nào?</td><td><strong>Leonardo da Vinci</strong></td></tr>
+        <tr><td><strong>08</strong></td><td><span class="badge badge-blue">2đ</span></td><td>Đỉnh núi nào được mệnh danh là 'Nóc nhà của Đông Dương'?</td><td><strong>Fansipan (3.143m)</strong></td></tr>
+        <tr><td><strong>09</strong></td><td><span class="badge badge-yellow">3đ</span></td><td>Nguyên tố hóa học nào có ký hiệu là 'Au' trong bảng tuần hoàn?</td><td><strong>Vàng (Gold - Aurum)</strong></td></tr>
+        <tr><td><strong>10</strong></td><td><span class="badge badge-yellow">3đ</span></td><td>Thành phố nào là kinh đô của nước ta dưới triều đại nhà Nguyễn?</td><td><strong>Huế (Cố đô Huế)</strong></td></tr>
+        <tr><td><strong>11</strong></td><td><span class="badge badge-yellow">3đ</span></td><td>Loài chim nào lớn nhất hành tinh hiện nay và không biết bay?</td><td><strong>Đà điểu châu Phi</strong></td></tr>
+        <tr><td><strong>12</strong></td><td><span class="badge badge-yellow">3đ</span></td><td>Đơn vị đo cường độ dòng điện trong hệ SI là gì?</td><td><strong>Ampe (A)</strong></td></tr>
+        <tr><td><strong>13</strong></td><td><span class="badge badge-yellow">3đ</span></td><td>Hồ nước ngọt tự nhiên lớn nhất Việt Nam nằm ở Bắc Kạn tên là gì?</td><td><strong>Hồ Ba Bể</strong></td></tr>
+        <tr><td><strong>14</strong></td><td><span class="badge badge-purple">4đ</span></td><td>Ai là tác giả của bản Tuyên ngôn Độc lập Mỹ năm 1776?</td><td><strong>Thomas Jefferson</strong></td></tr>
+        <tr><td><strong>15</strong></td><td><span class="badge badge-purple">4đ</span></td><td>Vận tốc của ánh sáng trong chân không xấp xỉ bao nhiêu km/s?</td><td><strong>~300.000 km/s</strong></td></tr>
+        <tr><td><strong>16</strong></td><td><span class="badge badge-purple">4đ</span></td><td>Vịnh biển nào của VN được UNESCO 2 lần công nhận Di sản Thế giới?</td><td><strong>Vịnh Hạ Long</strong></td></tr>
+        <tr><td><strong>17</strong></td><td><span class="badge badge-purple">4đ</span></td><td>Cơ quan nội tạng nào ở người có khả năng tự tái sinh mô mạnh mẽ nhất?</td><td><strong>Gan (Liver)</strong></td></tr>
+        <tr><td><strong>18</strong></td><td><span class="badge badge-red">5đ</span></td><td>Nhà bác học nào phát minh ra Định luật Vạn vật Hấp dẫn từ quả táo rơi?</td><td><strong>Isaac Newton</strong></td></tr>
+        <tr><td><strong>19</strong></td><td><span class="badge badge-red">5đ</span></td><td>Tam giác có độ dài 3 cạnh lần lượt 6cm, 8cm, 10cm là tam giác gì?</td><td><strong>Tam giác vuông (Pytago)</strong></td></tr>
+        <tr style="background: #fef08a;">
+          <td><strong style="color: #b45309;">20</strong></td>
+          <td><span class="badge badge-yellow" style="background:#b45309; color:white; font-weight:800;">🔥 10đ</span></td>
+          <td><strong>[JACKPOT]: Ngày, tháng, năm và địa điểm Bác Hồ đọc Tuyên ngôn Độc lập?</strong></td>
+          <td><strong>02/09/1945 tại Quảng trường Ba Đình, Hà Nội</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="gold-box" style="margin-top: 14px;">
+      <h3 style="font-size: 13.5px; margin-bottom: 4px; font-weight: 800; color: #78350f;">
+        💡 MẸO VẬN HÀNH DÀNH CHO KỸ THUẬT VIÊN:
+      </h3>
+      <ul style="margin-left: 18px; font-size: 12px; space-y: 3px;">
+        <li>Nhấn nút <strong>CHỈNH SỬA 20 CÂU HỎI</strong> ở màn hình Setup nếu nhóm muốn đổi bộ câu hỏi chuyên sâu theo bài thuyết trình của nhóm. Dữ liệu tự động lưu vào trình duyệt.</li>
+        <li>Nhấn phím <code>F11</code> trên bàn phím hoặc nút <strong>[PHÓNG TO TOÀN MÀN HÌNH]</strong> trên thanh Navbar để giao diện tràn viền máy chiếu đẹp nhất.</li>
+        <li>Có thể chuyển lượt thủ công giữa các đội bằng cách click trực tiếp vào ô tên đội trên <em>Bảng điểm trực tiếp</em>.</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
